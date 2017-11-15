@@ -1,0 +1,211 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.AI;
+
+public class cylMove : MonoBehaviour {
+
+    public float baseSpeed = 6.0F;
+    public float jumpSpeed = 8.0F;
+    public float gravity = 20.0F;
+    public float rotateSpeed = 120.0f;
+
+    public int maxStamina = 100;
+    private float currentStamina;
+    private bool stamRecovery = true;
+    private float timeLeft = 0;
+    private bool timerActive = false;
+    public Slider stamina;
+
+    public Interactable focus;
+    private Vector3 yaw;
+
+    public float speedH = 2.0f;
+    public float runSpeed = 10.0f;
+    private float speed;
+
+    private float lockPos = 0;
+
+    private GameObject myInv;
+    Camera cam;
+
+    CursorLockMode mouseCursor;
+
+    private Vector3 moveDirection = Vector3.zero;
+
+    private void Start()
+    {
+        cam = Camera.main;
+        myInv = GameObject.FindGameObjectWithTag("Inventory");
+        myInv.active = false;
+        currentStamina = maxStamina;
+    }
+
+    void FixedUpdate()
+    {
+      transform.rotation = Quaternion.Euler(lockPos, transform.rotation.eulerAngles.y, lockPos);
+        if (Input.GetButton("Run") && currentStamina >0)
+        {
+            speed = runSpeed;
+        }
+        else
+        {
+            speed = baseSpeed;
+        }
+
+        Cursor.lockState = mouseCursor;
+        mouseCursor = CursorLockMode.Confined;
+        yaw = transform.eulerAngles;
+        yaw.z = 0;
+        transform.eulerAngles = yaw;
+        
+        if (!Input.GetButton("Fire2"))
+        {
+            transform.Rotate(0, Input.GetAxis("Rotate") * rotateSpeed * Time.deltaTime, 0);
+        }
+        
+        
+
+        CharacterController controller = GetComponent<CharacterController>();
+        if (controller.isGrounded)
+        {
+
+            if (!Input.GetButton("Fire2")) { 
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection *= speed;
+                Cursor.visible = true;
+                
+            }
+            else if (Input.GetButton("Fire2"))
+            {
+                Cursor.visible = false;
+                
+                moveDirection = new Vector3(Input.GetAxis("HorizontalMouse2"), 0, Input.GetAxis("Vertical"));
+                moveDirection = transform.TransformDirection(moveDirection);
+                moveDirection *= speed;
+            }
+            if (Input.GetButton("Jump") && currentStamina > 0) {
+                 
+                moveDirection.y = jumpSpeed;
+                currentStamina = currentStamina - 1f;
+                timeLeft = 1f;
+   
+
+            }
+
+                      
+        }
+        //Inventory
+        if (Input.GetButtonDown("Inventory")){
+
+            myInv.SetActive(!myInv.activeSelf);
+
+        }
+        
+
+        //Look for interacable
+        if (Input.GetMouseButtonDown(0))
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Interactable interactable = hit.collider.GetComponent<Interactable>();
+                if (interactable != null)
+                {
+                    SetFocus(interactable);
+                }
+                else
+                {
+                    RemoveFocus();
+                }
+            }
+        }
+        if (Input.GetButton("Fire2"))
+        {
+            yaw.z = 0f;
+            yaw.y += speedH * Input.GetAxis("Mouse X");
+            yaw.x -= speedH * Input.GetAxis("Mouse Y");
+            transform.eulerAngles = yaw;
+        }
+
+
+        moveDirection.y -= gravity * Time.deltaTime;
+        controller.Move(moveDirection * Time.deltaTime);
+
+
+
+        //Stamina control
+
+        stamina.value = currentStamina;
+
+        if (stamRecovery)
+        {
+            if ((Input.GetButtonDown("Jump")) || (Input.GetButton("Run") && Input.GetButton("Vertical")) && currentStamina > 0)
+            {
+                if (Input.GetButtonDown("Jump")){
+                    //currentStamina = currentStamina - 1.0f;
+                    //Moved to jump section
+                }
+                else {
+                    currentStamina = currentStamina - 0.5f;
+                    timeLeft = 0.5f;
+                }
+                
+            }
+            else
+            {
+                if (timeLeft > 0)
+                {
+                    timeLeft -= Time.deltaTime;
+                }
+            }
+            if(timeLeft <= 0)
+            {
+                if (currentStamina < maxStamina)
+                {
+                    currentStamina = currentStamina + 0.5f;
+                    timerActive = false;
+                }
+            }
+            if (currentStamina <= 0)
+            {
+                speed = 1f;
+                if (!timerActive)
+                {
+                    timeLeft = 5f;
+                    timerActive = true;
+                }
+                
+            }
+        }
+
+
+    }
+
+    void SetFocus (Interactable newFocus)
+    {
+        if(newFocus != focus)
+        {
+            if (focus != null)
+            {
+                focus.OnDefocused();
+            }
+            
+            focus = newFocus;
+        }
+        focus = newFocus;
+        newFocus.OnFocused(transform);
+    }
+    void RemoveFocus()
+    {
+        if (focus != null)
+        {
+            focus.OnDefocused();
+        }
+        
+        focus = null;
+    }
+}
