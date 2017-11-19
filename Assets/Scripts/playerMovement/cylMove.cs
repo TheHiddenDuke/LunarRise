@@ -42,7 +42,7 @@ public class cylMove : MonoBehaviour {
         currentStamina = maxStamina;
     }
 
-    void FixedUpdate()
+    void Update()
     {
       transform.rotation = Quaternion.Euler(lockPos, transform.rotation.eulerAngles.y, lockPos);
         if (Input.GetButton("Run") && currentStamina >0)
@@ -98,7 +98,7 @@ public class cylMove : MonoBehaviour {
                       
         }
         //Inventory
-        if (Input.GetButtonDown("Inventory")){
+        if (Input.GetKeyDown(KeyCode.I)){
 
             myInv.SetActive(!myInv.activeSelf);
 
@@ -150,7 +150,7 @@ public class cylMove : MonoBehaviour {
                     //Moved to jump section
                 }
                 else {
-                    currentStamina = currentStamina - 0.5f;
+                    currentStamina = currentStamina - 0.05f;
                     timeLeft = 0.5f;
                 }
                 
