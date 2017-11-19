@@ -20,7 +20,7 @@ public class healthManagement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         
-        GameObject player = GameObject.Find("PlayerModel");
+        GameObject player = GameObject.Find("Player");
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
         health.value = playerStats.currentHealth;
         

@@ -22,4 +22,11 @@ public class PlayerStats : CharacterStats {
             damage.RemoveModifier(oldItem.damageModifier);
         }
     }
+    public bool attackMode = false;
+
+    public override void Die()
+    {
+        base.Die();
+        PlayerManager.instance.KillPlayer();
+    }
 }

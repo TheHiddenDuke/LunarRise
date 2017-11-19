@@ -10,7 +10,13 @@ public class Interactable : MonoBehaviour {
     bool hasInteracted = false;
 
     Transform player;
-
+    private void Start()
+    {
+        if (interactionTransform == null)
+        {
+            interactionTransform = transform;
+        }
+    }
 
     public virtual void Interact()
     {
