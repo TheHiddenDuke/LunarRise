@@ -219,6 +219,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BraidaScripts\Scripts\AddForce.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\CharacterCombat.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Controllers\AIController.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Controllers\CameraControler.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Controllers\EnemyController.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Controllers\PlayerControllerKeyButton.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Controllers\PlayerControllerMouse.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Controllers\PlayerMotor.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Enemy.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\EnemyInteraction.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Manager\AIManager.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Manager\AIManager2.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Manager\PlayerManager.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\MoveCamera.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Stats\AIStats.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Stats\EnemyStats.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Stats\Stats.cs" />
     <Compile Include="Assets\EquipmentManager.cs" />
     <Compile Include="Assets\healthManagement.cs" />
     <Compile Include="Assets\Scripts\followerMovement\moveTo.cs" />
