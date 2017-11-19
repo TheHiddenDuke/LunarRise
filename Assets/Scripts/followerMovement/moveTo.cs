@@ -20,7 +20,7 @@ public class moveTo : MonoBehaviour {
         float dist = Vector3.Distance(goal.position, transform.position);
         if (dist > 5f)
         {
-            float distOther = Vector3.Distance(other.position, transform.position);
+            //float distOther = Vector3.Distance(other.position, transform.position);
             /*
             if (distOther < 2f)
             {

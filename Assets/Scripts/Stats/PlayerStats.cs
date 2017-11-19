@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats {
 
-	// Use this for initialization
+    // Use this for initialization
+
+    public bool isMainCharacter;
+    public GameObject Character;
+
 	void Start () {
         EquipmentManager.instance.onEquipmentChanged += OnEquipmentChanged;
 	}
@@ -27,6 +31,10 @@ public class PlayerStats : CharacterStats {
     public override void Die()
     {
         base.Die();
-        PlayerManager.instance.KillPlayer();
+        if (isMainCharacter)
+        {
+            PlayerManager.instance.KillPlayer();
+        }
+        Destroy(Character);
     }
 }
