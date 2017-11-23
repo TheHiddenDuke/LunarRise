@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats {
 
-    // Use this for initialization
+    public bool attackMode = false;
+    public bool running = false;
 
-    public bool isMainCharacter;
-    public GameObject Character;
-
+	// Use this for initialization
 	void Start () {
         EquipmentManager.instance.onEquipmentChanged += OnEquipmentChanged;
 	}
@@ -26,15 +25,11 @@ public class PlayerStats : CharacterStats {
             damage.RemoveModifier(oldItem.damageModifier);
         }
     }
-    public bool attackMode = false;
+ 
 
     public override void Die()
     {
         base.Die();
-        if (isMainCharacter)
-        {
-            PlayerManager.instance.KillPlayer();
-        }
-        Destroy(Character);
+        PlayerManager.instance.KillPlayer();
     }
 }

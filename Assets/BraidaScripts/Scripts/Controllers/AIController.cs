@@ -7,8 +7,13 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
     GameObject mainPlayer;
-    Transform target;
+    public Transform target;
     NavMeshAgent agent;
+    public Transform goal;
+    public Transform other;
+    
+
+
 
     public float lookRadius = 10f;
     // Use this for initialization
@@ -16,86 +21,108 @@ public class AIController : MonoBehaviour
     {
         mainPlayer = PlayerManager.instance.player;
         agent = GetComponent<NavMeshAgent>();
+        target = goal;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        moveTo();
         
-            agent.SetDestination(mainPlayer.transform.position);
+
+        //agent.SetDestination(mainPlayer.transform.position);
         PlayerStats mainPlayerStats = mainPlayer.GetComponent<PlayerStats>();
-        if(mainPlayerStats!= null)
+        cylMove playerController = mainPlayer.GetComponent<cylMove>();
+        if (mainPlayerStats!= null)
         {
             if (mainPlayerStats.attackMode)
             {
-                cylMove playerController = mainPlayer.GetComponent<cylMove>();
-                target = playerController.focus.transform;
-                agent.SetDestination(target.position);
-                float distance = Vector3.Distance(target.position, transform.position);
-                //target = FindClosestEnemy();
-                if (distance <= lookRadius)
+
+                if (playerController.focus != null)
                 {
-                    agent.SetDestination(target.transform.position);
-                    if (distance <= agent.stoppingDistance)
+                    target = playerController.focus.transform;
+                    agent.SetDestination(target.position);
+                    float distance = Vector3.Distance(target.position, transform.position);
+                    //target = FindClosestEnemy();
+                    if (distance <= lookRadius)
                     {
-                        CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                        CharacterCombat combat = this.GetComponent<CharacterCombat>();
-                        if (targetStats != null)
+                        //agent.SetDestination(target.transform.position);
+                        if (distance <= agent.stoppingDistance)
                         {
-                            combat.Attack(targetStats);
+                            if (target.GetComponent<CharacterStats>() != null)
+                            {
+                                CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                                CharacterCombat combat = this.GetComponent<CharacterCombat>();
+                                if (targetStats != null)
+                                {
+                                    combat.Attack(targetStats);
+                                    FaceTarget();
+                                }
+
+                            }
                         }
-                        FaceTarget();
+                    }
+                    if (target == null)
+                    {
+                        target = goal;
                     }
                 }
+
             }
+            else
+                target = goal;
         }
-
-        /*
-         * float distance = Vector3.Distance(target.transform.position, transform.position);
-        //target = FindClosestEnemy();
-        if (distance<= lookRadius)
-        {
-            agent.SetDestination(target.transform.position);
-            if (distance <= agent.stoppingDistance)
-            {
-                CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                if(targetStats != null)
-                {
-                    combat.Attack(targetStats);
-                }
-                FaceTarget();
-            }
-        }
-         * 
-         * 
-         * 
-            */
-
-        /*
-         * public GameObject FindClosestEnemy()
-    {
-        GameObject[] gos;
-        gos = GameObject.FindGameObjectsWithTag("Player");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (GameObject go in gos)
-        {
-            Vector3 diff = go.transform.position - position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
-            {
-                closest = go;
-                distance = curDistance;
-            }
-        }
-        return closest;
-    }
-            */
-
-
+        FaceTarget();
+      
 
     }
+    /*
+       * public GameObject FindClosestEnemy()
+  {
+      GameObject[] gos;
+      gos = GameObject.FindGameObjectsWithTag("Player");
+      GameObject closest = null;
+      float distance = Mathf.Infinity;
+      Vector3 position = transform.position;
+      foreach (GameObject go in gos)
+      {
+          Vector3 diff = go.transform.position - position;
+          float curDistance = diff.sqrMagnitude;
+          if (curDistance < distance)
+          {
+              closest = go;
+              distance = curDistance;
+          }
+      }
+      return closest;
+  }
+          */
+
+
+    // Update is called once per frame
+    void moveTo () {
+        float dist = Vector3.Distance(goal.position, transform.position);
+        
+        if (dist > 5f)
+        {
+            float distOther = Vector3.Distance(other.position, transform.position);
+            /*
+            if (distOther < 2f)
+            {
+                transform.position = transform.position;
+            }*/
+        agent.destination = goal.position;
+            
+    }
+        else
+        {
+            agent.destination = transform.position; 
+        }
+        
+         
+    }
+         
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;

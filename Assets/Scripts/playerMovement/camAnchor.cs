@@ -20,7 +20,7 @@ public class camAnchor : MonoBehaviour {
     private Vector3 moveDirection = Vector3.zero;
 
 
-    void Update () {
+    void FixedUpdate () {
         transform.position = player.position;
         transform.eulerAngles = new Vector3 (transform.eulerAngles.x,player.eulerAngles.y,player.eulerAngles.z);
 	

@@ -20,9 +20,12 @@ public class CharacterCombat : MonoBehaviour {
     {
         if (attackCooldown <= 0f)
         {
-            StartCoroutine(DoDamage(targetStats, attackDelay));
-            attackCooldown = 1f / attackSpeed;
-        }
+            if (targetStats != null)
+            {
+                StartCoroutine(DoDamage(targetStats, attackDelay));
+                attackCooldown = 1f / attackSpeed;
+            }
+         }
         
     }
 

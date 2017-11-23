@@ -29,10 +29,12 @@ public class cylMove : MonoBehaviour {
 
     private GameObject myInv;
     Camera cam;
-
+    PlayerStats playerStats;
     CursorLockMode mouseCursor;
 
     private Vector3 moveDirection = Vector3.zero;
+
+    Animator anim;
 
     private void Start()
     {
@@ -40,18 +42,23 @@ public class cylMove : MonoBehaviour {
         myInv = GameObject.FindGameObjectWithTag("Inventory");
         myInv.active = false;
         currentStamina = maxStamina;
+        anim = GetComponentInChildren<Animator>();
+        playerStats = this.GetComponent<PlayerStats>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
-      transform.rotation = Quaternion.Euler(lockPos, transform.rotation.eulerAngles.y, lockPos);
+        
+        transform.rotation = Quaternion.Euler(lockPos, transform.rotation.eulerAngles.y, lockPos);
         if (Input.GetButton("Run") && currentStamina >0)
         {
             speed = runSpeed;
+            playerStats.running = true;
         }
         else
         {
             speed = baseSpeed;
+            playerStats.running = false;
         }
 
         Cursor.lockState = mouseCursor;
@@ -75,6 +82,7 @@ public class cylMove : MonoBehaviour {
                 moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
                 moveDirection = transform.TransformDirection(moveDirection);
                 moveDirection *= speed;
+                
                 Cursor.visible = true;
                 
             }
@@ -89,7 +97,7 @@ public class cylMove : MonoBehaviour {
             if (Input.GetButton("Jump") && currentStamina > 0) {
                  
                 moveDirection.y = jumpSpeed;
-                currentStamina = currentStamina - 2f;
+                currentStamina = currentStamina - 1f;
                 timeLeft = 1f;
    
 
@@ -118,7 +126,7 @@ public class cylMove : MonoBehaviour {
                     SetFocus(interactable);
                     if(interactable is EnemyInteraction)
                     {
-                        PlayerStats playerStats = this.GetComponent<PlayerStats>();
+                        
                         playerStats.attackMode = true;
                     }
                 }
@@ -155,7 +163,7 @@ public class cylMove : MonoBehaviour {
                     //Moved to jump section
                 }
                 else {
-                    currentStamina = currentStamina - 0.05f;
+                    currentStamina = currentStamina - 0.5f;
                     timeLeft = 0.5f;
                 }
                 

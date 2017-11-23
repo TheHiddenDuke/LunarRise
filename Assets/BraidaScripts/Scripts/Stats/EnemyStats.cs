@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats {
 
+
 	public override void Die()
     {
         base.Die();
         Destroy(gameObject);
+        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
+        playerStats.attackMode = false;
     }
 }
