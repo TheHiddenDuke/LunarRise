@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour {
     //GameObject target;
     NavMeshAgent agent;
     CharacterCombat combat;
+    EnemyStats enemyStats;
+    
   
     public float lookRadius = 10f;
 	// Use this for initialization
@@ -18,6 +20,7 @@ public class EnemyController : MonoBehaviour {
         //target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
+        enemyStats = GetComponent<EnemyStats>();
 	}
     private void FixedUpdate()
     {
@@ -28,21 +31,28 @@ public class EnemyController : MonoBehaviour {
     {
         target = FindClosestEnemy();
         float distance = Vector3.Distance(target.position, transform.position);
-        
-        if (distance<= lookRadius)
-        {
-            agent.SetDestination(target.position);
-            if (distance <= agent.stoppingDistance)
+        //if (target != null)
+        //{
+
+            if (distance <= lookRadius)
             {
-                CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                if(targetStats != null)
+                agent.SetDestination(target.position);
+                if (distance <= agent.stoppingDistance)
                 {
-                    combat.Attack(targetStats);
+                    CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                    if (targetStats != null)
+                    {
+                        combat.Attack(targetStats);
+                        enemyStats.attacking = true;
+                    }
+                    if(targetStats == null)
+                {
+                    enemyStats.attacking = false;
                 }
-                FaceTarget();
+                    FaceTarget();
+                }
             }
-        }
-		
+        //}
 	}
     public Transform FindClosestEnemy()
     {

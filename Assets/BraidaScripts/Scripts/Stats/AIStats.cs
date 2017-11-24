@@ -9,5 +9,6 @@ public class AIStats : CharacterStats
     {
         base.Die();
         Destroy(gameObject);
+        
     }
 }

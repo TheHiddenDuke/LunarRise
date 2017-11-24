@@ -7,6 +7,7 @@ public class EnemyInteraction : Interactable{
     AIManager aiManager;
     AIManager2 aiManager2;
     CharacterStats myStats;
+    PlayerStats playerStats;
 
     void Start()
     {
@@ -14,6 +15,7 @@ public class EnemyInteraction : Interactable{
         aiManager = AIManager.instance;
         aiManager2 = AIManager2.instance;
         myStats = GetComponent<CharacterStats>();
+        
     }
 
 	public override void Interact()
@@ -21,19 +23,12 @@ public class EnemyInteraction : Interactable{
         base.Interact();
         
         CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
-        CharacterCombat aiCombat = aiManager.ai.GetComponent<CharacterCombat>();
-        CharacterCombat aiCombat2 = aiManager2.ai.GetComponent<CharacterCombat>();
+        PlayerStats playerStats = playerManager.player.GetComponent<PlayerStats>();
         if (playerCombat != null)
         {
+
             playerCombat.Attack(myStats);
-            //playerStats.attackMode = true;
-            if (aiCombat != null)
-            {
-                aiCombat.Attack(myStats);
-                if (aiCombat2 != null) {
-                    aiCombat2.Attack(myStats);
-                        }
+            playerStats.attackMode = true;
             }
-        }
     }
 }

@@ -237,6 +237,7 @@
     <Compile Include="Assets\BraidaScripts\Scripts\Stats\AIStats.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Stats\EnemyStats.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Stats\Stats.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\TripodAnimator.cs" />
     <Compile Include="Assets\EquipmentManager.cs" />
     <Compile Include="Assets\healthManagement.cs" />
     <Compile Include="Assets\Scripts\followerMovement\moveTo.cs" />
@@ -264,11 +265,11 @@
     <Compile Include="Assets\Scripts\Unused\testMove.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\PB_Spider\readme.txt" />
+    <None Include="Assets\Enemies\PB_Spider\readme.txt" />
+    <None Include="Assets\Enemies\tripods\Materials\lightbeam.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
-    <None Include="Assets\tripods\Materials\lightbeam.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

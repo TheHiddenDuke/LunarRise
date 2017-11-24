@@ -42,7 +42,6 @@ public class cylMove : MonoBehaviour {
         myInv = GameObject.FindGameObjectWithTag("Inventory");
         myInv.active = false;
         currentStamina = maxStamina;
-        anim = GetComponentInChildren<Animator>();
         playerStats = this.GetComponent<PlayerStats>();
     }
 
@@ -124,11 +123,12 @@ public class cylMove : MonoBehaviour {
                 if (interactable != null)
                 {
                     SetFocus(interactable);
-                    if(interactable is EnemyInteraction)
+                    /*if(interactable is EnemyInteraction)
                     {
                         
                         playerStats.attackMode = true;
-                    }
+
+                    }*/
                 }
                 else
                 {

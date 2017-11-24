@@ -8,6 +8,8 @@ public class CharacterStats : MonoBehaviour {
     public int maxStamina = 100;
     public int currentHealth { get; private set; }
     public int showHealth;
+    public bool dead = false;
+    
 
     public Stat damage;
     public Stat armor;
@@ -28,6 +30,7 @@ public class CharacterStats : MonoBehaviour {
 
     public void TakeDamage (int damage)
     {
+        
         damage -= armor.getValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
@@ -37,6 +40,7 @@ public class CharacterStats : MonoBehaviour {
         if(currentHealth <= 0)
         {
             Die();
+            dead = true;
         }
     }
 

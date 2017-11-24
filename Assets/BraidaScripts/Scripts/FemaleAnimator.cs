@@ -9,12 +9,15 @@ public class FemaleAnimator : MonoBehaviour {
     NavMeshAgent agent;
     public float speed;
     PlayerStats playerStats;
+    PlayerStats aIStats;
 
     // Use this for initialization
     void Start () {
         agent = GetComponentInParent<NavMeshAgent>();
+        aIStats = GetComponentInParent<PlayerStats>();
         anim = GetComponent<Animator>();
         anim.SetBool("Running", false);
+        anim.SetBool("Punching", false);
         playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
     }
@@ -26,6 +29,18 @@ public class FemaleAnimator : MonoBehaviour {
         if (playerStats.running)
         {
             anim.SetBool("Running", true);
+        }
+        if (!playerStats.running)
+        {
+            anim.SetBool("Running", false);
+        }
+        if (aIStats.attackMode)
+        {
+            anim.SetBool("Punching", true);
+        }
+        if (!aIStats.attackMode)
+        {
+            anim.SetBool("Punching", false);
         }
     }
 }

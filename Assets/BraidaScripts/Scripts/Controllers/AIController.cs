@@ -7,11 +7,15 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
     GameObject mainPlayer;
-    public Transform target;
+    public GameObject target;
     NavMeshAgent agent;
     public Transform goal;
     public Transform other;
-    
+    PlayerStats aiStats;
+    public CharacterStats targetStats;
+    public Transform focus;
+    PlayerStats mainPlayerStats;
+    CharacterCombat combat;
 
 
 
@@ -21,67 +25,76 @@ public class AIController : MonoBehaviour
     {
         mainPlayer = PlayerManager.instance.player;
         agent = GetComponent<NavMeshAgent>();
-        target = goal;
-        
+        focus = goal;
+        mainPlayerStats = mainPlayer.GetComponent<PlayerStats>();
+        aiStats = this.GetComponent<PlayerStats>();
+        combat = this.GetComponent<CharacterCombat>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         moveTo();
         
 
         //agent.SetDestination(mainPlayer.transform.position);
-        PlayerStats mainPlayerStats = mainPlayer.GetComponent<PlayerStats>();
+        
         cylMove playerController = mainPlayer.GetComponent<cylMove>();
         if (mainPlayerStats!= null)
         {
-            if (mainPlayerStats.attackMode)
-            {
+            target = FindClosestEnemy();
 
-                if (playerController.focus != null)
+
+            if (target != null)
+            {
+                if (mainPlayerStats.attackMode || aiStats.attackMode)
                 {
-                    target = playerController.focus.transform;
-                    agent.SetDestination(target.position);
-                    float distance = Vector3.Distance(target.position, transform.position);
-                    //target = FindClosestEnemy();
+
+                    focus = target.transform;
+                    targetStats = target.GetComponent<CharacterStats>();
+
+
+                    agent.SetDestination(target.transform.position);
+                    float distance = Vector3.Distance(target.transform.position, transform.position);
                     if (distance <= lookRadius)
                     {
-                        //agent.SetDestination(target.transform.position);
                         if (distance <= agent.stoppingDistance)
                         {
                             if (target.GetComponent<CharacterStats>() != null)
                             {
-                                CharacterStats targetStats = target.GetComponent<CharacterStats>();
-                                CharacterCombat combat = this.GetComponent<CharacterCombat>();
                                 if (targetStats != null)
                                 {
                                     combat.Attack(targetStats);
+                                    aiStats.attackMode = true;
                                     FaceTarget();
                                 }
+
 
                             }
                         }
                     }
-                    if (target == null)
-                    {
-                        target = goal;
-                    }
                 }
-
             }
             else
-                target = goal;
+            {
+                targetStats = null;
+                focus = goal;
+                aiStats.attackMode = false;
+            }
+                
+            
+            
+            //target = goal.GetComponent<GameObject>();
         }
         FaceTarget();
       
 
     }
-    /*
-       * public GameObject FindClosestEnemy()
-  {
+    
+        public GameObject FindClosestEnemy(){
       GameObject[] gos;
-      gos = GameObject.FindGameObjectsWithTag("Player");
+      gos = GameObject.FindGameObjectsWithTag("Enemy");
       GameObject closest = null;
       float distance = Mathf.Infinity;
       Vector3 position = transform.position;
@@ -97,10 +110,7 @@ public class AIController : MonoBehaviour
       }
       return closest;
   }
-          */
-
-
-    // Update is called once per frame
+     
     void moveTo () {
         float dist = Vector3.Distance(goal.position, transform.position);
         
@@ -125,7 +135,7 @@ public class AIController : MonoBehaviour
          
     void FaceTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (focus.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
