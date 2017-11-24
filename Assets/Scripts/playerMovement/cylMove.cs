@@ -28,6 +28,7 @@ public class cylMove : MonoBehaviour {
     private float lockPos = 0;
 
     private GameObject myInv;
+    private GameObject myMenu;
     Camera cam;
     PlayerStats playerStats;
     CursorLockMode mouseCursor;
@@ -40,12 +41,15 @@ public class cylMove : MonoBehaviour {
     {
         cam = Camera.main;
         myInv = GameObject.FindGameObjectWithTag("Inventory");
-        myInv.active = false;
+        myInv.SetActive(false);
+        myMenu = GameObject.FindGameObjectWithTag("Menu");
+        myMenu.SetActive(false);
+
         currentStamina = maxStamina;
         playerStats = this.GetComponent<PlayerStats>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         
         transform.rotation = Quaternion.Euler(lockPos, transform.rotation.eulerAngles.y, lockPos);
@@ -109,6 +113,10 @@ public class cylMove : MonoBehaviour {
 
             myInv.SetActive(!myInv.activeSelf);
 
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            myMenu.SetActive(!myMenu.activeSelf);
         }
         
 

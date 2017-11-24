@@ -8,6 +8,7 @@ TagManager:
   - Health
   - Stamina
   - Enemy
+  - Menu
   layers:
   - Default
   - TransparentFX
