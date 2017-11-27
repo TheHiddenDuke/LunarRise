@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<questLog>
+  <quest>
+    <title>
+    Tutorial
+    </title>
+    <details>
+    This is the tutorial where the player get's to know the working of combat.
+    </details>
+  </quest>
+</questLog>

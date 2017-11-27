@@ -253,6 +253,7 @@
     <Compile Include="Assets\Scripts\playerMovement\camAnchor.cs" />
     <Compile Include="Assets\Scripts\playerMovement\camMove.cs" />
     <Compile Include="Assets\Scripts\playerMovement\cylMove.cs" />
+    <Compile Include="Assets\Scripts\quest\loadQuest.cs" />
     <Compile Include="Assets\Scripts\Stats\CharacterStats.cs" />
     <Compile Include="Assets\Scripts\Stats\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Stats\Stat.cs" />
@@ -268,6 +269,8 @@
   <ItemGroup>
     <None Include="Assets\Enemies\PB_Spider\readme.txt" />
     <None Include="Assets\Enemies\tripods\Materials\lightbeam.shader" />
+    <None Include="Assets\Resources\QuestLog.xml" />
+    <None Include="Assets\Scripts\quest\QuestLog.xml" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\ChromaticAberrationShader.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\VignettingShader.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_DepthOfField\SeparableBlur.shader" />
