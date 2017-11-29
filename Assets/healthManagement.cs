@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class healthManagement : MonoBehaviour {
 
     public Slider health;
-    
+    public GameObject character;
     
     
     // Use this for initialization
@@ -20,8 +20,8 @@ public class healthManagement : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () {
         
-        GameObject player = GameObject.Find("Player");
-        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        
+        PlayerStats playerStats = character.GetComponent<PlayerStats>();
         health.value = playerStats.currentHealth;
         
 	}
