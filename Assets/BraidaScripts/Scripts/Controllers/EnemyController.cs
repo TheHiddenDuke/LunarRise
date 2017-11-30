@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour {
         {
             target = FindClosestEnemy();
             float distance = Vector3.Distance(target.position, transform.position);
+            CharacterStats targetStats = target.GetComponent<CharacterStats>();
             //if (target != null)
             //{
 
@@ -46,11 +47,12 @@ public class EnemyController : MonoBehaviour {
                 agent.SetDestination(target.position);
                 if (distance <= agent.stoppingDistance)
                 {
-                    CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                    
                     if (targetStats != null)
                     {
                         combat.Attack(targetStats);
                         enemyStats.attacking = true;
+                        targetStats.underAttack = true;
 
                     }
                     if (targetStats == null)
@@ -59,6 +61,12 @@ public class EnemyController : MonoBehaviour {
                     }
                     FaceTarget();
                 }
+            }
+            else
+            {
+                enemyStats.attacking = false;
+                targetStats.underAttack = false;
+
             }
             //}
 

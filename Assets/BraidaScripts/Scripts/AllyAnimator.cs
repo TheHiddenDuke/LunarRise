@@ -44,5 +44,13 @@ public class AllyAnimator : MonoBehaviour {
         {
             anim.SetBool("Punching", false);
         }
+        if(aIStats.underAttack && !aIStats.attacking)
+        {
+            anim.SetBool("TakeHit", true);
+        }
+        else
+        {
+            anim.SetBool("TakeHit", false);
+        }
     }
 }

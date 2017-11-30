@@ -19,6 +19,7 @@ public class AIController : MonoBehaviour
 
 
 
+
     public float lookRadius = 10f;
     // Use this for initialization
     void Start()
@@ -44,7 +45,10 @@ public class AIController : MonoBehaviour
         if (mainPlayerStats!= null)
         {
             target = FindClosestEnemy();
-
+            if (aiStats.underAttack)
+            {
+                aiStats.attacking = true;
+            }
 
             if (target != null)
             {
@@ -81,6 +85,7 @@ public class AIController : MonoBehaviour
                 targetStats = null;
                 focus = goal;
                 aiStats.attacking = false;
+                aiStats.underAttack = false;
             }
                 
             

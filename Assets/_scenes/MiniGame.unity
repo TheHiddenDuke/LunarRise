@@ -2222,7 +2222,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 457441872}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 257, y: 338.5, z: 0}
+  m_LocalPosition: {x: 291.5, y: 346.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1805195909}
@@ -3000,7 +3000,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 758480539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -116.05001, y: -207.00002, z: 0}
+  m_LocalPosition: {x: -150.55002, y: -215.00002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1792129196}
@@ -4639,7 +4639,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1034092115}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 94, y: 148.5, z: 0}
+  m_LocalPosition: {x: 128.5, y: 156.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1840044022}
@@ -4735,6 +4735,7 @@ MonoBehaviour:
   showHealth: 0
   dead: 0
   attacking: 0
+  underAttack: 0
   damage:
     baseValue: 5
   armor:
@@ -4804,7 +4805,7 @@ Prefab:
     - target: {fileID: 224167971602376600, guid: da06ffbd4a4a19c47935e61284c21a93,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: -33.399994
+      value: -937.80005
       objectReference: {fileID: 0}
     - target: {fileID: 224167971602376600, guid: da06ffbd4a4a19c47935e61284c21a93,
         type: 2}
@@ -5397,11 +5398,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4381766765725126, guid: 4fb908beb79a19a4991c6d16dcc83d8d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 159.31
+      value: 154.52
       objectReference: {fileID: 0}
     - target: {fileID: 4381766765725126, guid: 4fb908beb79a19a4991c6d16dcc83d8d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 97.36
+      value: 97.13
       objectReference: {fileID: 0}
     - target: {fileID: 4381766765725126, guid: 4fb908beb79a19a4991c6d16dcc83d8d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5460,7 +5461,17 @@ Prefab:
     - target: {fileID: 114816243037156124, guid: 4fb908beb79a19a4991c6d16dcc83d8d,
         type: 2}
       propertyPath: damage.baseValue
-      value: 15
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 195908520851147380, guid: 4fb908beb79a19a4991c6d16dcc83d8d,
+        type: 2}
+      propertyPath: m_Speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114816243037156124, guid: 4fb908beb79a19a4991c6d16dcc83d8d,
+        type: 2}
+      propertyPath: underAttack
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4fb908beb79a19a4991c6d16dcc83d8d, type: 2}
@@ -6824,7 +6835,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1529108786}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 130.35, y: -55.75, z: 0}
+  m_LocalPosition: {x: 95.850006, y: -47.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 211782913}
@@ -7108,7 +7119,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1619501817}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 146.15, y: 95.35, z: 22.47}
+  m_LocalPosition: {x: 146.6, y: 95.35, z: 21.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 160827916}
@@ -7226,6 +7237,7 @@ MonoBehaviour:
   showHealth: 0
   dead: 0
   attacking: 0
+  underAttack: 0
   damage:
     baseValue: 0
   armor:
@@ -7482,7 +7494,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1655702160}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 130.35, y: -218.14998, z: 0}
+  m_LocalPosition: {x: 95.850006, y: -210.14998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1158319702}
@@ -7862,7 +7874,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1805195908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 67, y: -79.5, z: 0}
+  m_LocalPosition: {x: 101.5, y: -87.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 899176607}
@@ -8416,7 +8428,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4990529207708742, guid: 1a3a80ffc7d496c4e98c376d3e631495, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 149.26
+      value: 146.79
       objectReference: {fileID: 0}
     - target: {fileID: 4990529207708742, guid: 1a3a80ffc7d496c4e98c376d3e631495, type: 2}
       propertyPath: m_LocalPosition.y
@@ -8424,7 +8436,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4990529207708742, guid: 1a3a80ffc7d496c4e98c376d3e631495, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 17.78
+      value: 13.09
       objectReference: {fileID: 0}
     - target: {fileID: 4990529207708742, guid: 1a3a80ffc7d496c4e98c376d3e631495, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8988,6 +9000,7 @@ MonoBehaviour:
   showHealth: 0
   dead: 0
   attacking: 0
+  underAttack: 0
   damage:
     baseValue: 0
   armor:
