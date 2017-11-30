@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : CharacterStats {
 
-    public bool attackMode = false;
+    
     public bool running = false;
 
 	// Use this for initialization

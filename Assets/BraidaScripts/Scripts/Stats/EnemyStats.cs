@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats {
 
-    //public bool attacking = false;
+    
     public float time = 0;
     //Transform mycontroler;
 
@@ -17,13 +17,10 @@ public class EnemyStats : CharacterStats {
     public override void Die()
     {
         base.Die();
-        PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
-        playerStats.attackMode = false;
+        CharacterStats playerStats = PlayerManager.instance.player.GetComponent<CharacterStats>();
+        playerStats.attacking = false;
         attacking = false;
-        //Destroy(gameObject);
-        /*TripodAnimator tripodAnimator = GetComponentInChildren<TripodAnimator>();
-        tripodAnimator.anim.SetBool("Life", false);
-        */
+        
         
        
     }

@@ -19,10 +19,13 @@ public class healthManagement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        
-        
-        PlayerStats playerStats = character.GetComponent<PlayerStats>();
-        health.value = playerStats.currentHealth;
+
+        if (character != null)
+        {
+            CharacterStats playerStats = character.GetComponent<CharacterStats>();
+            health.value = playerStats.currentHealth;
+            
+        }
         
 	}
 }

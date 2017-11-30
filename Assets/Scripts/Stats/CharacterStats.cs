@@ -6,7 +6,7 @@ public class CharacterStats : MonoBehaviour {
 
     public int maxHealth = 100;
     public int maxStamina = 100;
-    public int currentHealth { get; private set; }
+    public int currentHealth;
     public int showHealth;
     public bool dead = false;
     public bool attacking = false;
@@ -23,10 +23,7 @@ public class CharacterStats : MonoBehaviour {
     void Update()
     {
         showHealth = currentHealth;
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(10);
-        }    
+         
     }
 
     public void TakeDamage (int damage)

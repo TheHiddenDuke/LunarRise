@@ -67,6 +67,7 @@ public class EnemyController : MonoBehaviour {
     public Transform FindClosestEnemy()
     {
         GameObject[] gos;
+        CharacterStats goStats;
         gos = GameObject.FindGameObjectsWithTag("Player");
         GameObject closest = null;
         float distance = Mathf.Infinity;
@@ -74,8 +75,9 @@ public class EnemyController : MonoBehaviour {
         foreach (GameObject go in gos)
         {
             Vector3 diff = go.transform.position - position;
+            goStats = go.GetComponent<CharacterStats>();
             float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            if (curDistance < distance && (goStats.currentHealth >= 0))
             {
                 closest = go;
                 distance = curDistance;
@@ -83,6 +85,7 @@ public class EnemyController : MonoBehaviour {
         }
         return closest.transform;
     }
+    
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;

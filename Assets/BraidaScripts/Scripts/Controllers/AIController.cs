@@ -11,7 +11,7 @@ public class AIController : MonoBehaviour
     NavMeshAgent agent;
     public Transform goal;
     public Transform other;
-    PlayerStats aiStats;
+    AIStats aiStats;
     public CharacterStats targetStats;
     public Transform focus;
     PlayerStats mainPlayerStats;
@@ -27,7 +27,7 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         focus = goal;
         mainPlayerStats = mainPlayer.GetComponent<PlayerStats>();
-        aiStats = this.GetComponent<PlayerStats>();
+        aiStats = this.GetComponent<AIStats>();
         combat = this.GetComponent<CharacterCombat>();
 
     }
@@ -48,7 +48,7 @@ public class AIController : MonoBehaviour
 
             if (target != null)
             {
-                if (mainPlayerStats.attackMode || aiStats.attackMode)
+                if (mainPlayerStats.attacking || aiStats.attacking)
                 {
 
                     focus = target.transform;
@@ -66,7 +66,7 @@ public class AIController : MonoBehaviour
                                 if (targetStats != null)
                                 {
                                     combat.Attack(targetStats);
-                                    aiStats.attackMode = true;
+                                    aiStats.attacking = true;
                                     FaceTarget();
                                 }
 
@@ -80,7 +80,7 @@ public class AIController : MonoBehaviour
             {
                 targetStats = null;
                 focus = goal;
-                aiStats.attackMode = false;
+                aiStats.attacking = false;
             }
                 
             
@@ -104,7 +104,7 @@ public class AIController : MonoBehaviour
           Vector3 diff = go.transform.position - position;
             goStats = go.GetComponent<CharacterStats>();
           float curDistance = diff.sqrMagnitude;
-          if (curDistance < distance && (goStats.currentHealth>=0.1))
+          if (curDistance < distance && (goStats.currentHealth>=0))
           {
               closest = go;
               distance = curDistance;

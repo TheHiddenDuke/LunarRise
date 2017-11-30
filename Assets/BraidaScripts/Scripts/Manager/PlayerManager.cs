@@ -16,7 +16,7 @@ public class PlayerManager : MonoBehaviour {
     public GameObject player;
     public void KillPlayer()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }

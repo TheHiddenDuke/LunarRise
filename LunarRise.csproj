@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -229,7 +231,7 @@
     <Compile Include="Assets\BraidaScripts\Scripts\Controllers\PlayerMotor.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Enemy.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\EnemyInteraction.cs" />
-    <Compile Include="Assets\BraidaScripts\Scripts\FemaleAnimator.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\AllyAnimator.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\AIManager.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\AIManager2.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\PlayerManager.cs" />
