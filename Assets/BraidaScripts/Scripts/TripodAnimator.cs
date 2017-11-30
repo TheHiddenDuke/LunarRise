@@ -5,10 +5,13 @@ using UnityEngine.AI;
 
 public class TripodAnimator : MonoBehaviour {
 
-    Animator anim;
+    public Animator anim;
     NavMeshAgent agent;
     public float speed;
+    public float life;
     EnemyStats enemyStats;
+    EnemyController enemyController;
+    
     
     // Use this for initialization
     void Start()
@@ -23,7 +26,8 @@ public class TripodAnimator : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("Speed", agent.velocity.magnitude);
+        anim.SetFloat("Speed", speed = agent.velocity.magnitude);
+        anim.SetFloat("Life", life = enemyStats.currentHealth);
         if (enemyStats.attacking)
         {
             anim.SetBool("Attack", true);
@@ -32,5 +36,6 @@ public class TripodAnimator : MonoBehaviour {
         {
             anim.SetBool("Attack", false);
         }
+
     }   
 }

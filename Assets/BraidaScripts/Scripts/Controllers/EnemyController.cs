@@ -29,34 +29,53 @@ public class EnemyController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        target = FindClosestEnemy();
-        float distance = Vector3.Distance(target.position, transform.position);
-        //if (target != null)
-        //{
+        if (enemyStats.currentHealth <= 0.1f)
+        {
+            target = null;
+            enemyStats.attacking = false;
+        }
+        else
+        {
+            target = FindClosestEnemy();
+            float distance = Vector3.Distance(target.position, transform.position);
+            CharacterStats targetStats = target.GetComponent<CharacterStats>();
+            //if (target != null)
+            //{
 
             if (distance <= lookRadius)
             {
                 agent.SetDestination(target.position);
                 if (distance <= agent.stoppingDistance)
                 {
-                    CharacterStats targetStats = target.GetComponent<CharacterStats>();
+                    
                     if (targetStats != null)
                     {
                         combat.Attack(targetStats);
                         enemyStats.attacking = true;
+                        targetStats.underAttack = true;
+
                     }
-                    if(targetStats == null)
-                {
-                    enemyStats.attacking = false;
-                }
+                    if (targetStats == null)
+                    {
+                        enemyStats.attacking = false;
+                    }
                     FaceTarget();
                 }
             }
-        //}
+            else
+            {
+                enemyStats.attacking = false;
+                targetStats.underAttack = false;
+
+            }
+            //}
+
+        }
 	}
     public Transform FindClosestEnemy()
     {
         GameObject[] gos;
+        CharacterStats goStats;
         gos = GameObject.FindGameObjectsWithTag("Player");
         GameObject closest = null;
         float distance = Mathf.Infinity;
@@ -64,8 +83,9 @@ public class EnemyController : MonoBehaviour {
         foreach (GameObject go in gos)
         {
             Vector3 diff = go.transform.position - position;
+            goStats = go.GetComponent<CharacterStats>();
             float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance)
+            if (curDistance < distance && (goStats.currentHealth >= 0))
             {
                 closest = go;
                 distance = curDistance;
@@ -73,6 +93,7 @@ public class EnemyController : MonoBehaviour {
         }
         return closest.transform;
     }
+    
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;

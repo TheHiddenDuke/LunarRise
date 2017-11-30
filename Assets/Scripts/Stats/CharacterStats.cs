@@ -6,14 +6,19 @@ public class CharacterStats : MonoBehaviour {
 
     public int maxHealth = 100;
     public int maxStamina = 100;
-    public int currentHealth { get; private set; }
+    public int currentHealth;
     public int showHealth;
     public bool dead = false;
-    
-
+    public bool attacking = false;
+    public bool underAttack = false;
+    Animator anim;
     public Stat damage;
     public Stat armor;
 
+    private void Start()
+    {
+        anim = GetComponentInChildren<Animator>();
+    }
     void Awake()
     {
         currentHealth = maxHealth;
@@ -21,28 +26,28 @@ public class CharacterStats : MonoBehaviour {
 
     void Update()
     {
-        showHealth = currentHealth;
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            TakeDamage(10);
-        }    
+        
+         
     }
-
+    
     public void TakeDamage (int damage)
     {
         
         damage -= armor.getValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
+       
+        
+            
+            currentHealth -= damage;
+            Debug.Log(transform.name + " takes " + damage + " damage.");
 
-        currentHealth -= damage;
-        Debug.Log(transform.name + " takes " + damage + " damage.");
-
-        if(currentHealth <= 0)
-        {
-            Die();
-            dead = true;
+            if (currentHealth <= 0)
+            {
+                Die();
+                dead = true;
+            }
+        
         }
-    }
 
     public virtual void Die()
     {

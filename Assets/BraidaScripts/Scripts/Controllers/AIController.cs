@@ -11,11 +11,12 @@ public class AIController : MonoBehaviour
     NavMeshAgent agent;
     public Transform goal;
     public Transform other;
-    PlayerStats aiStats;
+    AIStats aiStats;
     public CharacterStats targetStats;
     public Transform focus;
     PlayerStats mainPlayerStats;
     CharacterCombat combat;
+
 
 
 
@@ -27,7 +28,7 @@ public class AIController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         focus = goal;
         mainPlayerStats = mainPlayer.GetComponent<PlayerStats>();
-        aiStats = this.GetComponent<PlayerStats>();
+        aiStats = this.GetComponent<AIStats>();
         combat = this.GetComponent<CharacterCombat>();
 
     }
@@ -44,11 +45,14 @@ public class AIController : MonoBehaviour
         if (mainPlayerStats!= null)
         {
             target = FindClosestEnemy();
-
+            if (aiStats.underAttack)
+            {
+                aiStats.attacking = true;
+            }
 
             if (target != null)
             {
-                if (mainPlayerStats.attackMode || aiStats.attackMode)
+                if (mainPlayerStats.attacking || aiStats.attacking)
                 {
 
                     focus = target.transform;
@@ -66,7 +70,7 @@ public class AIController : MonoBehaviour
                                 if (targetStats != null)
                                 {
                                     combat.Attack(targetStats);
-                                    aiStats.attackMode = true;
+                                    aiStats.attacking = true;
                                     FaceTarget();
                                 }
 
@@ -80,7 +84,8 @@ public class AIController : MonoBehaviour
             {
                 targetStats = null;
                 focus = goal;
-                aiStats.attackMode = false;
+                aiStats.attacking = false;
+                aiStats.underAttack = false;
             }
                 
             
@@ -94,6 +99,7 @@ public class AIController : MonoBehaviour
     
         public GameObject FindClosestEnemy(){
       GameObject[] gos;
+      CharacterStats goStats;
       gos = GameObject.FindGameObjectsWithTag("Enemy");
       GameObject closest = null;
       float distance = Mathf.Infinity;
@@ -101,8 +107,9 @@ public class AIController : MonoBehaviour
       foreach (GameObject go in gos)
       {
           Vector3 diff = go.transform.position - position;
+            goStats = go.GetComponent<CharacterStats>();
           float curDistance = diff.sqrMagnitude;
-          if (curDistance < distance)
+          if (curDistance < distance && (goStats.currentHealth>=0))
           {
               closest = go;
               distance = curDistance;
