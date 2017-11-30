@@ -94,6 +94,7 @@ public class AIController : MonoBehaviour
     
         public GameObject FindClosestEnemy(){
       GameObject[] gos;
+      CharacterStats goStats;
       gos = GameObject.FindGameObjectsWithTag("Enemy");
       GameObject closest = null;
       float distance = Mathf.Infinity;
@@ -101,8 +102,9 @@ public class AIController : MonoBehaviour
       foreach (GameObject go in gos)
       {
           Vector3 diff = go.transform.position - position;
+            goStats = go.GetComponent<CharacterStats>();
           float curDistance = diff.sqrMagnitude;
-          if (curDistance < distance)
+          if (curDistance < distance && (goStats.currentHealth>=0.1))
           {
               closest = go;
               distance = curDistance;

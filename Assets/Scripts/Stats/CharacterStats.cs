@@ -9,6 +9,7 @@ public class CharacterStats : MonoBehaviour {
     public int currentHealth { get; private set; }
     public int showHealth;
     public bool dead = false;
+    public bool attacking = false;
     
 
     public Stat damage;

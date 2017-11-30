@@ -29,10 +29,17 @@ public class EnemyController : MonoBehaviour {
     // Update is called once per frame
     void Update ()
     {
-        target = FindClosestEnemy();
-        float distance = Vector3.Distance(target.position, transform.position);
-        //if (target != null)
-        //{
+        if (enemyStats.currentHealth <= 0.1f)
+        {
+            target = null;
+            enemyStats.attacking = false;
+        }
+        else
+        {
+            target = FindClosestEnemy();
+            float distance = Vector3.Distance(target.position, transform.position);
+            //if (target != null)
+            //{
 
             if (distance <= lookRadius)
             {
@@ -44,15 +51,18 @@ public class EnemyController : MonoBehaviour {
                     {
                         combat.Attack(targetStats);
                         enemyStats.attacking = true;
+
                     }
-                    if(targetStats == null)
-                {
-                    enemyStats.attacking = false;
-                }
+                    if (targetStats == null)
+                    {
+                        enemyStats.attacking = false;
+                    }
                     FaceTarget();
                 }
             }
-        //}
+            //}
+
+        }
 	}
     public Transform FindClosestEnemy()
     {
