@@ -30,6 +30,7 @@ public class cylMove : MonoBehaviour {
     private GameObject myInv;
     private GameObject myMenu;
     private GameObject myQuest;
+    private GameObject myEquip;
     Camera cam;
     PlayerStats playerStats;
     CursorLockMode mouseCursor;
@@ -47,6 +48,8 @@ public class cylMove : MonoBehaviour {
         myMenu.SetActive(false);
         myQuest = GameObject.FindGameObjectWithTag("Quest");
         myQuest.SetActive(false);
+        myEquip = GameObject.FindGameObjectWithTag("Equip");
+        myEquip.SetActive(false);
 
         currentStamina = maxStamina;
         playerStats = this.GetComponent<PlayerStats>();
@@ -128,6 +131,11 @@ public class cylMove : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.L))
         {
             myQuest.SetActive(!myQuest.activeSelf);
+        }
+        //Equipment
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            myEquip.SetActive(!myEquip.activeSelf);
         }
 
         

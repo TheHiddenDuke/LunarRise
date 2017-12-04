@@ -9,6 +9,7 @@ public class menuButton : MonoBehaviour {
     private GameObject myMenu;
     private GameObject myQuest;
     private GameObject myMission;
+    private GameObject myEquip;
     public Text title;
     public Text detail;
     
@@ -18,7 +19,9 @@ public class menuButton : MonoBehaviour {
         myMenu = GameObject.FindGameObjectWithTag("Menu");
         myQuest = GameObject.FindGameObjectWithTag("Quest");
         myMission = GameObject.FindGameObjectWithTag("QuestDetail");
+        myEquip = GameObject.FindGameObjectWithTag("Equip");
         myMission.SetActive(false);
+        
 
     }
 	
@@ -55,6 +58,11 @@ public class menuButton : MonoBehaviour {
 
 
         }
+    }
+
+    public void Equipment()
+    {
+        myEquip.SetActive(!myEquip.activeSelf);
     }
 
     public Text[] details;

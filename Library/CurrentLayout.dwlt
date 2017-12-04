@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 817, y: 271}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 3669
+  controlID: 5301
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -322,9 +322,9 @@ MonoBehaviour:
     height: 926
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: b4adfdff02c5fdff00000000c4f500005ef60000
+    m_SelectedIDs: 8cedffff
+    m_LastClickedID: -4724
+    m_ExpandedIDs: 08d3fdff68f7ffff6af7ffff8cfbffff000000009441000038420000d2430000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -374,14 +374,14 @@ MonoBehaviour:
     width: 906
     height: 926
   m_SceneLighting: 1
-  lastFramingTime: 401.8394597539624
+  lastFramingTime: 1699.5569856761756
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 436.14474, y: 35.309734, z: -3.2320638}
+    m_Target: {x: 460.91998, y: 552.44, z: 0}
     speed: 2
-    m_Value: {x: 436.14474, y: 35.309734, z: -3.2320638}
+    m_Value: {x: 460.91998, y: 552.44, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -404,17 +404,17 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: 0.0014999992, y: 0.001499998, z: 0.0000022500378, w: -0.99999774}
+    m_Target: {x: -0.061460152, y: 0.005988617, z: -0.00036876544, w: -0.9980915}
     speed: 2
-    m_Value: {x: 0.0014999992, y: 0.001499998, z: 0.0000022500378, w: -0.99999774}
+    m_Value: {x: -0.061460156, y: 0.0059886174, z: -0.00036876544, w: -0.9980915}
   m_Size:
-    m_Target: 736.5879
+    m_Target: 268.60056
     speed: 2
-    m_Value: 736.5879
+    m_Value: 268.60056
   m_Ortho:
-    m_Target: 0
+    m_Target: 1
     speed: 2
-    m_Value: 0
+    m_Value: 1
   m_ShowGlobalGrid: 1
   m_LastSceneViewRotation: {x: 0, y: 0, z: 0, w: 0}
   m_LastSceneViewOrtho: 0
@@ -532,19 +532,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Sprites
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 57
   m_LastFolders:
-  - Assets/Sprites
+  - Assets/Scripts
   m_LastFoldersGridSize: 57
   m_LastProjectPath: C:\Users\Jarand\Documents\GitHub\LunarRise
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 60f40000
-    m_LastClickedID: 62560
-    m_ExpandedIDs: 00000000f0ef0000faef00001af0000060f00000a6f00000ccf1000076f200003ef3000060f400005cf9000000ca9a3bffffff7f
+    m_SelectedIDs: e82d0000
+    m_LastClickedID: 11752
+    m_ExpandedIDs: 00000000362900006a2900008c2b0000e82d0000562f0000e8330000ba350000b43700005e3d00000048000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -572,7 +572,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f0ef0000faef00001af0000060f00000a6f00000ccf1000076f200003ef3000060f400005cf9000000ca9a3bffffff7f
+    m_ExpandedIDs: 00000000362900006a2900008c2b0000e82d0000562f0000e8330000ba350000b43700005e3d00000048000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -600,7 +600,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300000628000048a80000b6f800007016010080f700001229000000000000da2b0000202b000016d20000
+    m_ExpandedInstanceIDs: c62300000628000048a80000b6f800007016010080f7000012290000da2b0000202b000016d20000f639000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

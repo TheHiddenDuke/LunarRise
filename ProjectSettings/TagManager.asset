@@ -12,6 +12,7 @@ TagManager:
   - Quest
   - QuestList
   - QuestDetail
+  - Equip
   layers:
   - Default
   - TransparentFX
