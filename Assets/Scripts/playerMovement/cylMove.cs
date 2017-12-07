@@ -27,6 +27,11 @@ public class cylMove : MonoBehaviour {
 
     private float lockPos = 0;
 
+    public Button[] actionbuttons = new Button[10];
+    AbilityCoolDown abilityCoolDown;
+    public Ability[] abilities = new Ability[4];
+    public RayCastSkillTrigger rcst;
+
     private GameObject myInv;
     private GameObject myMenu;
     private GameObject myQuest;
@@ -50,9 +55,10 @@ public class cylMove : MonoBehaviour {
         myQuest.SetActive(false);
         myEquip = GameObject.FindGameObjectWithTag("Equip");
         myEquip.SetActive(false);
-
+        //abilityCoolDown = GetComponent<AbilityCoolDown>();
         currentStamina = maxStamina;
         playerStats = this.GetComponent<PlayerStats>();
+        rcst.GetComponent<RayCastSkillTrigger>();
     }
 
     void Update()
@@ -114,7 +120,14 @@ public class cylMove : MonoBehaviour {
 
                       
         }
-        
+        if (Input.GetButtonDown("Skill1"))
+        {
+            Debug.Log("Right Input");
+            abilityCoolDown = actionbuttons[0].GetComponent<AbilityCoolDown>();
+            rcst.Triggered = true;
+            abilityCoolDown.Initialize("Skill1", /*abilities[0],*/ PlayerManager.instance.player);
+
+        }
 
         //Inventory
         if (Input.GetButtonDown("Inventory")){

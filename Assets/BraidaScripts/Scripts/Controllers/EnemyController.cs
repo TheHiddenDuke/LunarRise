@@ -6,18 +6,20 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour {
 
     public Transform target;
-    //GameObject target;
     NavMeshAgent agent;
     CharacterCombat combat;
     EnemyStats enemyStats;
-    
-  
+    public CharacterStats targetStats;
+    public float distance;
+
+
+
     public float lookRadius = 10f;
 	// Use this for initialization
 	void Start () {
-        //target = GameObject.FindGameObjectWithTag("Respawn").transform;
+        
         target = FindClosestEnemy();
-        //target = PlayerManager.instance.player.transform;
+        
         agent = GetComponent<NavMeshAgent>();
         combat = GetComponent<CharacterCombat>();
         enemyStats = GetComponent<EnemyStats>();
@@ -31,14 +33,19 @@ public class EnemyController : MonoBehaviour {
     {
         if (enemyStats.currentHealth <= 0.1f)
         {
+            if (targetStats != null)
+            {
+                targetStats.underAttack = false;
+               
+            }
             target = null;
             enemyStats.attacking = false;
         }
         else
         {
             target = FindClosestEnemy();
-            float distance = Vector3.Distance(target.position, transform.position);
-            CharacterStats targetStats = target.GetComponent<CharacterStats>();
+            distance = Vector3.Distance(target.position, transform.position);
+            targetStats = target.GetComponent<CharacterStats>();
             //if (target != null)
             //{
 
@@ -62,10 +69,11 @@ public class EnemyController : MonoBehaviour {
                     FaceTarget();
                 }
             }
-            else
+            if(distance> lookRadius)
             {
                 enemyStats.attacking = false;
-                targetStats.underAttack = false;
+                //targetStats.underAttack = false;
+                Debug.Log("Esse eh o problema");
 
             }
             //}

@@ -9,10 +9,14 @@ public class AIStats : CharacterStats
 
     public float time = 0;
 
+    public bool abilityAttack = false;
 
     public override void Die()
     {
+        
         base.Die();
+        //underAttack = false;
+        attacking = false;
         //Destroy(gameObject);
 
     }

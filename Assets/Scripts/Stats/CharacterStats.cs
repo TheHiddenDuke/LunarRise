@@ -40,7 +40,7 @@ public class CharacterStats : MonoBehaviour {
             
             currentHealth -= damage;
             Debug.Log(transform.name + " takes " + damage + " damage.");
-
+            underAttack = true;
             if (currentHealth <= 0)
             {
                 Die();

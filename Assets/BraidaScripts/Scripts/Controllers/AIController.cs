@@ -7,15 +7,16 @@ using UnityEngine.AI;
 public class AIController : MonoBehaviour
 {
     GameObject mainPlayer;
-    public GameObject target;
+    public GameObject target = null;
     NavMeshAgent agent;
     public Transform goal;
     public Transform other;
-    AIStats aiStats;
+    public AIStats aiStats;
     public CharacterStats targetStats;
     public Transform focus;
     PlayerStats mainPlayerStats;
     CharacterCombat combat;
+    
 
 
 
@@ -34,27 +35,37 @@ public class AIController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         moveTo();
-        
+        //agent.SetDestination(focus.position);
+        if (aiStats.currentHealth <= 0.1f)
+        {
+            target = null;
+            aiStats.attacking = false;
+            aiStats.underAttack = false;
+        }
 
         //agent.SetDestination(mainPlayer.transform.position);
-        
-        cylMove playerController = mainPlayer.GetComponent<cylMove>();
-        if (mainPlayerStats!= null)
+
+        //cylMove playerController = mainPlayer.GetComponent<cylMove>();
+        if (mainPlayerStats != null)
         {
-            target = FindClosestEnemy();
+            
+            
             if (aiStats.underAttack)
             {
                 aiStats.attacking = true;
             }
+            //if (!aiStats.abilityAttack)
+            //{
 
-            if (target != null)
-            {
                 if (mainPlayerStats.attacking || aiStats.attacking)
                 {
-
+                    if (target == null)
+                    {
+                        target = FindClosestEnemy();
+                    }
                     focus = target.transform;
                     targetStats = target.GetComponent<CharacterStats>();
 
@@ -65,29 +76,36 @@ public class AIController : MonoBehaviour
                     {
                         if (distance <= agent.stoppingDistance)
                         {
-                            if (target.GetComponent<CharacterStats>() != null)
+
+                            if (targetStats != null)
                             {
-                                if (targetStats != null)
-                                {
-                                    combat.Attack(targetStats);
-                                    aiStats.attacking = true;
-                                    FaceTarget();
-                                }
-
-
+                                combat.Attack(targetStats);
+                                aiStats.attacking = true;
+                                FaceTarget();
                             }
+                            //If the current enemy's life ended, but the main player is not attacking, stop attacking
+                            if ((targetStats.currentHealth < 0.1f) && !mainPlayerStats.attacking)
+                            {
+                                aiStats.attacking = false;
+                                focus = mainPlayer.transform;
+                                goal = focus;
+                                target = null;
+                            }
+
                         }
                     }
                 }
-            }
-            else
-            {
-                targetStats = null;
-                focus = goal;
-                aiStats.attacking = false;
-                aiStats.underAttack = false;
-            }
-                
+                else
+                {
+                    targetStats = null;
+                    //goal = mainPlayer.transform;
+                    //focus = goal;
+                    aiStats.attacking = false;
+                    //aiStats.underAttack = false;
+                }
+            //}
+            //
+        //}       
             
             
             //target = goal.GetComponent<GameObject>();
@@ -117,6 +135,10 @@ public class AIController : MonoBehaviour
       }
       return closest;
   }
+    void Rest()
+    {
+
+    }
      
     void moveTo () {
         float dist = Vector3.Distance(goal.position, transform.position);

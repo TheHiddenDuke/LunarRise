@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class EnemyInteraction : Interactable{
     PlayerManager playerManager;
-    AIManager aiManager;
-    AIManager2 aiManager2;
     CharacterStats myStats;
     CharacterStats playerStats;
 
     void Start()
     {
         playerManager = PlayerManager.instance;
-        aiManager = AIManager.instance;
-        aiManager2 = AIManager2.instance;
         myStats = GetComponent<CharacterStats>();
         
     }
