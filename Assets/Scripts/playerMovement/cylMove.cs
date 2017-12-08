@@ -36,6 +36,7 @@ public class cylMove : MonoBehaviour {
     private GameObject myMenu;
     private GameObject myQuest;
     private GameObject myEquip;
+    private GameObject mySkillTree;
     Camera cam;
     PlayerStats playerStats;
     CursorLockMode mouseCursor;
@@ -55,6 +56,9 @@ public class cylMove : MonoBehaviour {
         myQuest.SetActive(false);
         myEquip = GameObject.FindGameObjectWithTag("Equip");
         myEquip.SetActive(false);
+        mySkillTree = GameObject.FindGameObjectWithTag("SkillTreeMainPlayer");
+        mySkillTree.SetActive(false);
+
         //abilityCoolDown = GetComponent<AbilityCoolDown>();
         currentStamina = maxStamina;
         playerStats = this.GetComponent<PlayerStats>();
@@ -127,6 +131,10 @@ public class cylMove : MonoBehaviour {
             rcst.Triggered = true;
             abilityCoolDown.Initialize("Skill1", /*abilities[0],*/ PlayerManager.instance.player);
 
+        }
+        if (Input.GetButtonDown("SkillTreeMainPlayer"))
+        {
+            mySkillTree.SetActive(!mySkillTree.activeSelf);
         }
 
         //Inventory

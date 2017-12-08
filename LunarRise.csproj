@@ -222,6 +222,7 @@
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\Ability.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\RayCastAbility.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\RayCastSkillTrigger.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Abilities\StatsAbilities.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\AbilityCoolDown.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\AddForce.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\AllyAnimator.cs" />
@@ -235,10 +236,12 @@
     <Compile Include="Assets\BraidaScripts\Scripts\Enemy.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\EnemyInteraction.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\FemaleAnimator.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Manager\AbilitiesManager.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\AIManager.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\AIManager2.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\PlayerManager.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\MoveCamera.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\SkillTree\SkillTree.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Stats\AIStats.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Stats\EnemyStats.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Stats\Stats.cs" />

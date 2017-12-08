@@ -13,6 +13,7 @@ TagManager:
   - QuestList
   - QuestDetail
   - Equip
+  - SkillTreeMainPlayer
   layers:
   - Default
   - TransparentFX

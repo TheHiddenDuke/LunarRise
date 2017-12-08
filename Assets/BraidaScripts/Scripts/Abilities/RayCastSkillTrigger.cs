@@ -43,25 +43,16 @@ public class RayCastSkillTrigger : MonoBehaviour {
                         if (hit.transform.GetComponent<EnemyController>() != null)
                         {
                             Debug.Log(hit.transform.name + " hitting okay");
-                            /*if (target == null)
-                            {
-                                target = hit.transform;
-                            }*/
-                            //else
-                            //{
+                            
 
                             target = hit.transform;
                             if (target != null) {
-                                //AIController aIController = character.GetComponent<AIController>();
-                                //agent = character.GetComponent<NavMeshAgent>();
                                 aIController.focus = target;
                                 aIController.target = target.GetComponent<GameObject>();
                                 aIController.goal = target;
-                                //aIController.aiStats.abilityAttack = true;
-                                //agent.SetDestination(target.transform.position);
                                 targetStats = hit.transform.GetComponent<CharacterStats>();
                                 distance = Vector3.Distance(target.transform.position, character.transform.position);
-                                if (distance <= skillRange+1.1f)
+                                if (distance <= skillRange)
                                 {
                                     
                                     if (targetStats != null)
@@ -86,10 +77,7 @@ public class RayCastSkillTrigger : MonoBehaviour {
                         }
                     }
 
-                    /*if ((target != null) && !attackHappened)
-                    {
-                        Activate();
-                    }*/
+                    
                 }
             }
         }

@@ -16,6 +16,10 @@ public class Stat {
         modifiers.ForEach(x =>finalValue += x);
         return finalValue;
     }
+    public void setValue(int value)
+    {
+        baseValue = value;
+    }
 
     public void AddModifier (int modifier)
     {

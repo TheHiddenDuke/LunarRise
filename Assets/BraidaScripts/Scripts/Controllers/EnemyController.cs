@@ -69,13 +69,13 @@ public class EnemyController : MonoBehaviour {
                     FaceTarget();
                 }
             }
-            if(distance> lookRadius)
+            /*if(distance> lookRadius)
             {
                 enemyStats.attacking = false;
                 //targetStats.underAttack = false;
-                Debug.Log("Esse eh o problema");
+                //Debug.Log("Esse eh o problema");
 
-            }
+            }*/
             //}
 
         }
