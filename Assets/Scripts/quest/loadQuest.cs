@@ -15,12 +15,10 @@ public class loadQuest : MonoBehaviour {
         {
 
             Dictionary<string, string> dic = allTextDic[0];
-            Debug.Log(dic["title"]);
-            Debug.Log(dic["details"]);
+            
 
             dic = allTextDic[1];
-            Debug.Log(dic["title"]);
-            Debug.Log(dic["details"]);
+            
 
 
         }

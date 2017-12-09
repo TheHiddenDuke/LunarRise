@@ -91,7 +91,6 @@ public class cylMove : MonoBehaviour {
             transform.Rotate(0, Input.GetAxis("Rotate") * rotateSpeed * Time.deltaTime, 0);
         }
         
-        
 
         CharacterController controller = GetComponent<CharacterController>();
         if (controller.isGrounded)
@@ -118,7 +117,7 @@ public class cylMove : MonoBehaviour {
                 moveDirection.y = jumpSpeed;
                 currentStamina = currentStamina - 1f;
                 timeLeft = 1f;
-   
+                
 
             }
 
