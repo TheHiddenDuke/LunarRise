@@ -15,6 +15,7 @@ TagManager:
   - Equip
   - SkillTreeMainPlayer
   - ActionButton
+  - GameManager
   layers:
   - Default
   - TransparentFX

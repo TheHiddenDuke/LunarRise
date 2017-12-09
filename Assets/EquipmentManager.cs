@@ -74,6 +74,11 @@ public class EquipmentManager : MonoBehaviour {
             Unequip(i);
         }
     }
+
+    public Equipment[] SendArray()
+    {
+        return currentEquipment;
+    }
     void Update()
     {
     if (Input.GetKeyDown(KeyCode.U))

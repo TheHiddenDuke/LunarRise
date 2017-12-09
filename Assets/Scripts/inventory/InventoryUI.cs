@@ -6,6 +6,10 @@ public class InventoryUI : MonoBehaviour {
     Inventory inventory;
     public Transform itemsParent;
     InventorySlot[] slots;
+    EquipSlot[] equipmentSlot;
+    Equipment[] currentEquip = new Equipment[4];
+    GameObject gameManager;
+    public GameObject equip;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +17,13 @@ public class InventoryUI : MonoBehaviour {
         inventory.onItemChangedCallback += UpdateUI;
 
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
+
+        equipmentSlot = equip.GetComponentsInChildren<EquipSlot>();
+
+        
     }
 	
 	// Update is called once per frame
@@ -35,9 +46,16 @@ public class InventoryUI : MonoBehaviour {
             }
         }
         //Update Equipment
+        
+        
+    }
+    public void UpdateEquip()
+    {
+        currentEquip = gameManager.GetComponent<EquipmentManager>().SendArray();
 
-        for(int i = 0; i < 4; i++) {
-
+        for (int i = 0; i < equipmentSlot.Length; i++)
+        {
+            equipmentSlot[i].AddItem(currentEquip[i]);
         }
     }
 }
