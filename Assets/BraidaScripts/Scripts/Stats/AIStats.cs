@@ -9,7 +9,7 @@ public class AIStats : CharacterStats
 
     public float time = 0;
 
-    public bool abilityAttack = false;
+    
 
     public override void Die()
     {
@@ -20,6 +20,7 @@ public class AIStats : CharacterStats
         //Destroy(gameObject);
 
     }
+    
     public void FixedUpdate()
     {
 

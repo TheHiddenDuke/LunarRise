@@ -15,18 +15,30 @@ public class AbilityCoolDown : MonoBehaviour
     private float nextReadyTime;
     private float coolDownTimeLeft;
     public bool skillSelected = false;
+    public DragAndDropItem Itemability;
 
 
 
-    public void Initialize(string aButton, /*Ability selectedAbility,*/ GameObject skillHolder)
+    public void Initialize(string aButton, GameObject skillHolder)
     {
-        //ability = selectedAbility;
+        Itemability = GetComponent<DragAndDropCell>().GetItem();
+        if (Itemability != null)
+        {
+            Debug.Log("Getting item correctly");
+            ability = Itemability.GetComponent<AbilityButtonInfo>().ability;
+            if (ability != null)
+            {
+                Debug.Log("Getting ability correctly");
+                abilityButtonAxisName = aButton;
+                coolDownDuration = ability.aBaseCoolDown;
+                ability.Initialize(skillHolder);
 
-        abilityButtonAxisName = aButton;
-        
-        coolDownDuration = ability.aBaseCoolDown;
-        ability.Initialize(skillHolder);
-        
+            }
+
+
+
+
+        }
     }
 
     // Update is called once per frame

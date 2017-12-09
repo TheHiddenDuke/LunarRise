@@ -29,65 +29,36 @@ public class RayCastSkillTrigger : MonoBehaviour {
     {
         if (Triggered)
         {
-            if (!attackHappened)
+            //Keep waiting untill player choose a target
+            if (Input.GetMouseButtonDown(0) || (target != null))
             {
-                if (Input.GetMouseButtonDown(0) || (target != null))
+                //Keep calli Activate method untillthe AI attacks the enemy
+                if (!attackHappened) 
                 {
                     Activate();
-                    /*Debug.Log("Raycast here");
-                    Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-                    RaycastHit hit;
-                    if (Physics.Raycast(ray, out hit, 1000))
-                    {
-                        Debug.Log("RayCasting ok1");
-                        if (hit.transform.GetComponent<EnemyController>() != null)
-                        {
-                            Debug.Log(hit.transform.name + " hitting okay");
-                            
-
-                            target = hit.transform;
-                            if (target != null) {
-                                aIController.focus = target;
-                                aIController.target = target.GetComponent<GameObject>();
-                                aIController.goal = target;
-                                targetStats = hit.transform.GetComponent<CharacterStats>();
-                                distance = Vector3.Distance(target.transform.position, character.transform.position);
-                                if (distance <= skillRange)
-                                {
-                                    
-                                    if (targetStats != null)
-                                    {
-                                        targetStats.TakeDamage(skillDamage);
-                                        Debug.Log(target.name + " received" + skillDamage.ToString() + " from " + skillname);
-                                        attackHappened = true;
-                                        //aIController.aiStats.abilityAttack = false;
-                                        Triggered = false;
-                                        
-                                    }
-                                    //}
-                                }
-                                //}
-
-                            }
-                            else
-                            {
-                                aIController.goal = PlayerManager.instance.player.transform;
-                                aIController.focus = aIController.goal;
-                            }
-                        }
-                    }
-                    */
+                    
                     
                 }
             }
         }
         
     }
-    // Update is called once per frame
-    public void Activate()
+    public void ResetTrigger()
     {
-        Debug.Log("Raycast here");
+        character = null;
+        targetStats = null; ;
+        target = null;
+        attackHappened = false;
+        Triggered = false;
+        aIController= null;
+     agent = null;
+    distance = 0;
+
+}
+// Update is called once per frame
+public void Activate()
+    {
+        
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
         RaycastHit hit;
@@ -96,18 +67,21 @@ public class RayCastSkillTrigger : MonoBehaviour {
             Debug.Log("RayCasting ok1");
             if (hit.transform.GetComponent<EnemyController>() != null)
             {
+                aIController.aiStats.abilityAttack = true;
                 Debug.Log(hit.transform.name + " hitting okay");
 
 
                 target = hit.transform;
                 if (target != null)
-                {
+                {   //Set focus and goal as the enemy so the ally moves towards the enemy using moveTo function on AIController
                     aIController.focus = target;
-                    aIController.target = target.GetComponent<GameObject>();
                     aIController.goal = target;
+                    //Set enemy as the AIs target
+                    Debug.Log("Target Setted ok");
+                    aIController.target = target.GetComponent<GameObject>();
                     targetStats = hit.transform.GetComponent<CharacterStats>();
                     distance = Vector3.Distance(target.transform.position, character.transform.position);
-                    if (distance <= skillRange+3)
+                    if (distance <= skillRange+1)
                     {
 
                         if (targetStats != null)
@@ -115,8 +89,9 @@ public class RayCastSkillTrigger : MonoBehaviour {
                             targetStats.TakeDamage(skillDamage);
                             Debug.Log(target.name + " received" + skillDamage.ToString() + " from " + skillname);
                             attackHappened = true;
-                            //aIController.aiStats.abilityAttack = false;
-                            Triggered = false;
+                            aIController.target = null;
+                            aIController.aiStats.abilityAttack = false;
+                            ResetTrigger();
 
                         }
                         //}

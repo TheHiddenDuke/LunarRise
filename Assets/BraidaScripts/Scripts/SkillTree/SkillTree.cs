@@ -31,7 +31,8 @@ public class SkillTree : MonoBehaviour {
             for (int i = 0; i < skillbuttons.Length; i++)
             {
                 AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
-                if ((skillAbility.requirement == null) || (skillAbility.available == true)||(skillAbility.requirement.available))
+                if(skillAbility!=null){ 
+                if ((skillAbility.requirement == null) || (skillAbility.available == true) || (skillAbility.requirement.available))
                 {
                     skillbuttons[i].interactable = true;
                 }
@@ -39,6 +40,7 @@ public class SkillTree : MonoBehaviour {
                 {
                     skillbuttons[i].interactable = false;
                 }
+            }
             }
         }
 		

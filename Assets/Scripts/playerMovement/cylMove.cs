@@ -128,8 +128,15 @@ public class cylMove : MonoBehaviour {
         {
             Debug.Log("Right Input");
             abilityCoolDown = actionbuttons[0].GetComponent<AbilityCoolDown>();
-            rcst.Triggered = true;
-            abilityCoolDown.Initialize("Skill1", /*abilities[0],*/ PlayerManager.instance.player);
+            if (abilityCoolDown.GetComponentInChildren<AbilityButtonInfo>() != null)
+            {
+                rcst.Triggered = true;
+                abilityCoolDown.Initialize("Skill1", PlayerManager.instance.player);
+            }
+            else
+            {
+                Debug.Log("No ability");
+            }
 
         }
         if (Input.GetButtonDown("SkillTreeMenu"))

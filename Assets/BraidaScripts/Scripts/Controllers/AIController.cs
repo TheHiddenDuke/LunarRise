@@ -38,22 +38,24 @@ public class AIController : MonoBehaviour
     void Update()
     {
         moveTo();
-        //agent.SetDestination(focus.position);
-        if (aiStats.currentHealth <= 0.1f)
+        
+        if (aiStats.currentHealth <= 0.1f)       //If player died, set values to null an keep it still while dieing animation happens
         {
             target = null;
+            goal = null;
+            focus = null;
             aiStats.attacking = false;
             aiStats.underAttack = false;
         }
 
-        //agent.SetDestination(mainPlayer.transform.position);
+        
 
         //cylMove playerController = mainPlayer.GetComponent<cylMove>();
         if (mainPlayerStats != null)
         {
             
             
-            if (aiStats.underAttack)
+            if (aiStats.underAttack&&!aiStats.abilityAttack)
             {
                 aiStats.attacking = true;
             }
@@ -84,7 +86,7 @@ public class AIController : MonoBehaviour
                             
                             if (!targetStats.dead)
                             {
-                                Debug.Log("Chegando aqui");
+                                
                                 combat.Attack(targetStats);
                                 aiStats.attacking = true;
                                 FaceTarget();
@@ -102,12 +104,19 @@ public class AIController : MonoBehaviour
                         }
                     }
                 }
-                else
+                else if (aiStats.abilityAttack)
+            {
+
+            }
+            else
+                {
+                
                 {
                     targetStats = null;
-                    //goal = mainPlayer.transform;
-                    //focus = goal;
+                    goal = mainPlayer.transform;
+                    focus = goal;
                     aiStats.attacking = false;
+                }
                     //aiStats.underAttack = false;
                 }
             //}
@@ -148,24 +157,27 @@ public class AIController : MonoBehaviour
     }
      
     void moveTo () {
-        float dist = Vector3.Distance(goal.position, transform.position);
-        
-        if (dist > 5f)
+
+        if (goal != null)
         {
-            float distOther = Vector3.Distance(other.position, transform.position);
-            /*
-            if (distOther < 2f)
+            float dist = Vector3.Distance(goal.position, transform.position);
+
+            if (dist > 5f)
             {
-                transform.position = transform.position;
-            }*/
-        agent.destination = goal.position;
-            
-    }
-        else
-        {
-            agent.destination = transform.position; 
+                float distOther = Vector3.Distance(other.position, transform.position);
+                /*
+                if (distOther < 2f)
+                {
+                    transform.position = transform.position;
+                }*/
+                agent.destination = goal.position;
+
+            }
+            else
+            {
+                agent.destination = transform.position;
+            }
         }
-        
          
     }
          
