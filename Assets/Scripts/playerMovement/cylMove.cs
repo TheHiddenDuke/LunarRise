@@ -37,6 +37,7 @@ public class cylMove : MonoBehaviour {
     private GameObject myQuest;
     private GameObject myEquip;
     private GameObject mySkillTree;
+    [HideInInspector] public bool changedMenu = false;
     Camera cam;
     PlayerStats playerStats;
     CursorLockMode mouseCursor;
@@ -56,7 +57,7 @@ public class cylMove : MonoBehaviour {
         myQuest.SetActive(false);
         myEquip = GameObject.FindGameObjectWithTag("Equip");
         myEquip.SetActive(false);
-        mySkillTree = GameObject.FindGameObjectWithTag("SkillTreeMainPlayer");
+        mySkillTree = GameObject.FindGameObjectWithTag("SkillTreeMenu");
         mySkillTree.SetActive(false);
 
         //abilityCoolDown = GetComponent<AbilityCoolDown>();
@@ -131,9 +132,14 @@ public class cylMove : MonoBehaviour {
             abilityCoolDown.Initialize("Skill1", /*abilities[0],*/ PlayerManager.instance.player);
 
         }
-        if (Input.GetButtonDown("SkillTreeMainPlayer"))
+        if (Input.GetButtonDown("SkillTreeMenu"))
         {
-            mySkillTree.SetActive(!mySkillTree.activeSelf);
+            //if (!changedMenu) {
+                mySkillTree.SetActive(!mySkillTree.activeSelf);
+            //}
+                     
+            
+           
         }
 
         //Inventory

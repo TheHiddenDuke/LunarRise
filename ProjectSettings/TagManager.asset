@@ -16,6 +16,7 @@ TagManager:
   - SkillTreeMainPlayer
   - ActionButton
   - GameManager
+  - SkillTreeMenu
   layers:
   - Default
   - TransparentFX

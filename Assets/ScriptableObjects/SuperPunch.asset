@@ -19,4 +19,4 @@ MonoBehaviour:
   requirement: {fileID: 11400000, guid: 3c351fa79c9ec324ab2589958b068a7e, type: 2}
   damage: 50
   range: 8
-  allyName: MaleAlly
+  allyName: Max
