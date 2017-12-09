@@ -22,8 +22,10 @@ public class CharacterCombat : MonoBehaviour {
         {
             if (targetStats != null)
             {
+                  
                 StartCoroutine(DoDamage(targetStats, attackDelay));
                 attackCooldown = 1f / attackSpeed;
+            
             }
          }
         
@@ -32,7 +34,10 @@ public class CharacterCombat : MonoBehaviour {
     IEnumerator DoDamage(CharacterStats stats, float delay)
     {
         yield return new WaitForSeconds(delay);
-        stats.TakeDamage(mystats.damage.getValue());
+        if (!stats.dead)
+        {
+            stats.TakeDamage(mystats.damage.getValue());
+        }
     }
     
 

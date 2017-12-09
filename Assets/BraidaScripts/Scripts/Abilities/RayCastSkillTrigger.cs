@@ -33,7 +33,8 @@ public class RayCastSkillTrigger : MonoBehaviour {
             {
                 if (Input.GetMouseButtonDown(0) || (target != null))
                 {
-                    Debug.Log("Raycast here");
+                    Activate();
+                    /*Debug.Log("Raycast here");
                     Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
                     RaycastHit hit;
@@ -76,7 +77,7 @@ public class RayCastSkillTrigger : MonoBehaviour {
                             }
                         }
                     }
-
+                    */
                     
                 }
             }
@@ -86,43 +87,50 @@ public class RayCastSkillTrigger : MonoBehaviour {
     // Update is called once per frame
     public void Activate()
     {
-        Debug.Log("Activate ok");
+        Debug.Log("Raycast here");
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-       
-        if (Input.GetButtonDown("TestButton")) 
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000))
         {
-            Debug.Log("RayCasting ok");
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 1000))
+            Debug.Log("RayCasting ok1");
+            if (hit.transform.GetComponent<EnemyController>() != null)
             {
-                Debug.Log("RayCasting ok1");
-                if (hit.transform.GetComponent<EnemyController>() != null) {
-                    if (target == null)
-                    {
-                        target = hit.transform;
-                    }
-                    else { 
-                        NavMeshAgent agent = character.GetComponent<NavMeshAgent>();
-                        agent.SetDestination(target.transform.position);
+                Debug.Log(hit.transform.name + " hitting okay");
+
+
+                target = hit.transform;
+                if (target != null)
+                {
+                    aIController.focus = target;
+                    aIController.target = target.GetComponent<GameObject>();
+                    aIController.goal = target;
                     targetStats = hit.transform.GetComponent<CharacterStats>();
-                    float distance = Vector3.Distance(target.transform.position, character.transform.position);
-                    if (distance <= skillRange)
+                    distance = Vector3.Distance(target.transform.position, character.transform.position);
+                    if (distance <= skillRange+3)
                     {
+
                         if (targetStats != null)
                         {
                             targetStats.TakeDamage(skillDamage);
-                                Debug.Log(target.name + " received" + skillDamage.ToString() + " from " + skillname);
-                                attackHappened = true;
+                            Debug.Log(target.name + " received" + skillDamage.ToString() + " from " + skillname);
+                            attackHappened = true;
+                            //aIController.aiStats.abilityAttack = false;
+                            Triggered = false;
+
                         }
-
+                        //}
                     }
-                }
+                    //}
 
-                    
-            }
+                }
+                else
+                {
+                    aIController.goal = PlayerManager.instance.player.transform;
+                    aIController.focus = aIController.goal;
+                }
             }
         }
+
     }
 }

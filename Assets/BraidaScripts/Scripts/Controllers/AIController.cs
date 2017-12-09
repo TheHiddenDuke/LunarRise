@@ -72,16 +72,23 @@ public class AIController : MonoBehaviour
 
                     agent.SetDestination(target.transform.position);
                     float distance = Vector3.Distance(target.transform.position, transform.position);
+                    
                     if (distance <= lookRadius)
                     {
-                        if (distance <= agent.stoppingDistance)
+                    
+                    if (distance <= agent.stoppingDistance)
                         {
-
-                            if (targetStats != null)
+                        
+                        if (targetStats != null)
                             {
+                            
+                            if (!targetStats.dead)
+                            {
+                                Debug.Log("Chegando aqui");
                                 combat.Attack(targetStats);
                                 aiStats.attacking = true;
                                 FaceTarget();
+                            }
                             }
                             //If the current enemy's life ended, but the main player is not attacking, stop attacking
                             if ((targetStats.currentHealth < 0.1f) && !mainPlayerStats.attacking)

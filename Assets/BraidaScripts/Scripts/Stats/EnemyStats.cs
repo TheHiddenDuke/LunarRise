@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyStats : CharacterStats {
 
-    
+    public int providedXP;
     public float time = 0;
     //Transform mycontroler;
 
@@ -20,6 +20,7 @@ public class EnemyStats : CharacterStats {
         CharacterStats playerStats = PlayerManager.instance.player.GetComponent<CharacterStats>();
         playerStats.attacking = false;
         attacking = false;
+        LevelSystem.instance.gainedXP = LevelSystem.instance.gainedXP + providedXP;
         
         
        

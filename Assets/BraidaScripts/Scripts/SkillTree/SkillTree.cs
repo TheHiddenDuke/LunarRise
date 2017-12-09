@@ -24,12 +24,21 @@ public class SkillTree : MonoBehaviour {
             {
                 skillbuttons[i].GetComponent<Button>().enabled = false;
             }
+            
         }
         else
         {
             for (int i = 0; i < skillbuttons.Length; i++)
             {
-                skillbuttons[i].GetComponent<Button>().enabled = true;
+                AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
+                if ((skillAbility.requirement == null) || (skillAbility.available == true)||(skillAbility.requirement.available))
+                {
+                    skillbuttons[i].interactable = true;
+                }
+                else
+                {
+                    skillbuttons[i].interactable = false;
+                }
             }
         }
 		
