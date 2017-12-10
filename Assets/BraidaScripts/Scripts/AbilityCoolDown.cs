@@ -31,7 +31,14 @@ public class AbilityCoolDown : MonoBehaviour
                 Debug.Log("Getting ability correctly");
                 abilityButtonAxisName = aButton;
                 coolDownDuration = ability.aBaseCoolDown;
-                ability.Initialize(skillHolder);
+                if (ability.available)
+                {
+                    ability.Initialize(skillHolder);
+                }
+                else
+                {
+                    Debug.Log("Blocked Ability");
+                }
 
             }
 

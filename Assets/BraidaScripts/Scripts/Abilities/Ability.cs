@@ -10,6 +10,7 @@ public abstract class Ability : ScriptableObject {
     public float aBaseCoolDown = 1f;
     public bool available = false;
     public Ability requirement = null;
+    public int level = 0;
     
 
     public abstract void Initialize(GameObject obj);

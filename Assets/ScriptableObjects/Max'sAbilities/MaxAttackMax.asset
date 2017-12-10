@@ -8,15 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 035852a5f69c6b04bb817b3fe35f8eac, type: 3}
-  m_Name: SuperPunch
+  m_Script: {fileID: 11500000, guid: ec9ee9c582e823440bce72b3e27ef127, type: 3}
+  m_Name: MaxAttackMax
   m_EditorClassIdentifier: 
-  aname: SuperPunch
+  aname: New Ability
   aSprite: {fileID: 0}
   aSound: {fileID: 0}
   aBaseCoolDown: 1
   available: 0
-  requirement: {fileID: 11400000, guid: 3c351fa79c9ec324ab2589958b068a7e, type: 2}
-  damage: 50
-  range: 8
-  allyName: Max
+  requirement: {fileID: 0}
+  level: 0
+  statMultiplier: 1

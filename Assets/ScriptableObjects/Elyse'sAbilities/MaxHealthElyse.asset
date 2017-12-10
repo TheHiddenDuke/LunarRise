@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ec9ee9c582e823440bce72b3e27ef127, type: 3}
-  m_Name: MaxAttack
+  m_Name: MaxHealthElyse
   m_EditorClassIdentifier: 
   aname: New Ability
   aSprite: {fileID: 0}
@@ -17,4 +17,5 @@ MonoBehaviour:
   aBaseCoolDown: 1
   available: 0
   requirement: {fileID: 0}
-  statMultiplier: 1.2
+  level: 0
+  statMultiplier: 1
