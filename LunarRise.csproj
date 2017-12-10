@@ -222,6 +222,7 @@
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\Ability.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\AbilityButtonInfo.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\RayCastAbility.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\Abilities\RayCastAbilityMainPlayer.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\RayCastSkillTrigger.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Abilities\StatsAbilities.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\AbilityCoolDown.cs" />

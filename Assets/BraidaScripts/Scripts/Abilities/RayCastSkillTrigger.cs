@@ -15,6 +15,7 @@ public class RayCastSkillTrigger : MonoBehaviour {
     public bool Triggered = false;
     public GameObject[] allies = new GameObject[3];
     public AIController aIController;
+    public PlayerStats playerStats;
     public NavMeshAgent agent;
     public float distance;
 
@@ -35,8 +36,14 @@ public class RayCastSkillTrigger : MonoBehaviour {
                 //Keep calli Activate method untillthe AI attacks the enemy
                 if (!attackHappened) 
                 {
-                    Activate();
-                    
+                    if (character == PlayerManager.instance.player.transform)
+                    {
+                        ActivateMainPlayerAbility();
+                    }
+                    else
+                    {
+                        Activate();
+                    }
                     
                 }
             }
@@ -55,8 +62,50 @@ public class RayCastSkillTrigger : MonoBehaviour {
     distance = 0;
 
 }
-// Update is called once per frame
-public void Activate()
+    public void ActivateMainPlayerAbility()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 1000))
+        {
+            Debug.Log("RayCasting ok1");
+            if (hit.transform.GetComponent<EnemyController>() != null)
+            {
+                
+                target = hit.transform;
+                if (target != null)
+                {   targetStats = hit.transform.GetComponent<CharacterStats>();
+                    distance = Vector3.Distance(target.transform.position, character.transform.position);
+                    if (distance <= skillRange + 1)
+                    {
+
+                        if (targetStats != null)
+                        {
+                            targetStats.TakeDamage(skillDamage);
+                            Debug.Log(target.name + " received" + skillDamage.ToString() + " from " + skillname);
+                            attackHappened = true;
+                           
+
+                        }
+                        
+                        //}
+                    }
+                    else
+                    {
+                        Debug.Log("Out of range");
+                        ResetTrigger();
+                    }
+                    //}
+
+                }
+                
+            }
+        }
+
+    }
+    // Update is called once per frame
+    public void Activate()
     {
         
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);

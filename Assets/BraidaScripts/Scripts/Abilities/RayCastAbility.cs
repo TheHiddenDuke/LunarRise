@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 [CreateAssetMenu(menuName = "Abilities/RayCastAbility")]
-public class RayCastAbility : Ability
+public class RayCastAbilityAI : Ability
 {
     public int damage = 1;
     public float range = 50f;

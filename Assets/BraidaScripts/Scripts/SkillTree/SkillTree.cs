@@ -60,7 +60,7 @@ public class SkillTree : MonoBehaviour {
 		
 	}
 
-    public void AllowAbility(RayCastAbility activeAbility)
+    public void AllowAbility(RayCastAbilityAI activeAbility)
     {
         if (activeAbility.available == false)
         {
@@ -85,6 +85,31 @@ public class SkillTree : MonoBehaviour {
             }
         }
         }
+    public void AllowAbility(RayCastAbilityMainPlayer activeAbility)
+    {
+        if (activeAbility.available == false)
+        {
+            if ((activeAbility.requirement == null) || (activeAbility.requirement.available == true))
+            {
+                totalSkillPoints--;
+                skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
+                activeAbility.level++;
+                activeAbility.available = true;
+                Debug.Log(activeAbility.aname);
+            }
+        }
+        else
+        {
+            if (activeAbility.level < 10)
+            {
+                totalSkillPoints--;
+                skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
+                activeAbility.level++;
+                activeAbility.damage = Mathf.RoundToInt(activeAbility.damage * 1.2f);
+                Debug.Log(activeAbility.damage);
+            }
+        }
+    }
 
     public void StatAbilityDamage(StatsAbilities statAbility)
     {
