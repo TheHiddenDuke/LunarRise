@@ -15,6 +15,7 @@ public class CharacterStats : MonoBehaviour {
     public int currentlvl = 1;
     public int nextLevelXp = 100;
     public bool abilityAttack = false;
+    public int skillPoints = 0;
     Animator anim;
     public Stat damage;
     public Stat armor;

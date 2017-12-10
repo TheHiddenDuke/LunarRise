@@ -33,6 +33,7 @@ public class LevelSystem : MonoBehaviour {
                 if (partyStats[i].currentXp >= partyStats[i].nextLevelXp)
                 {
                     partyStats[i].currentlvl++;
+                    partyStats[i].skillPoints++;
                     partyStats[i].currentXp = partyStats[i].currentXp - partyStats[i].nextLevelXp;
                     partyStats[i].nextLevelXp = 100 * (partyStats[i].currentlvl + 1) * (partyStats[i].currentlvl + 1);
                 }

@@ -18,7 +18,7 @@ public class SkillTree : MonoBehaviour {
 	
 	
 	void Update () {
-        
+        totalSkillPoints = skillTreeCharacter.GetComponent<CharacterStats>().skillPoints;
         if(totalSkillPoints == 0)
         {
 
@@ -67,6 +67,7 @@ public class SkillTree : MonoBehaviour {
             if ((activeAbility.requirement == null) || (activeAbility.requirement.available == true))
             {
                 totalSkillPoints--;
+                skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
                 activeAbility.level++;
                 activeAbility.available = true;
                 Debug.Log(activeAbility.aname);
@@ -77,6 +78,7 @@ public class SkillTree : MonoBehaviour {
             if (activeAbility.level < 10)
             {
                 totalSkillPoints--;
+                skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
                 activeAbility.level++;
                 activeAbility.damage = Mathf.RoundToInt(activeAbility.damage * 1.2f);
                 Debug.Log(activeAbility.damage);
@@ -89,6 +91,7 @@ public class SkillTree : MonoBehaviour {
         if (statAbility.available == false)
         {
             totalSkillPoints--;
+            skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
             statAbility.available = true;
             statAbility.level++;
             CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
@@ -100,6 +103,7 @@ public class SkillTree : MonoBehaviour {
             if (statAbility.level < 10)
             {
                 totalSkillPoints--;
+                skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
                 statAbility.level++;
                 statAbility.statMultiplier = statAbility.statMultiplier + 0.2f;
                 CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
@@ -114,6 +118,7 @@ public class SkillTree : MonoBehaviour {
         if (statAbility.available == false)
         {
             totalSkillPoints--;
+            skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
             statAbility.available = true;
             statAbility.level++;
             CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
@@ -125,6 +130,7 @@ public class SkillTree : MonoBehaviour {
             if (statAbility.level < 10)
             {
                 totalSkillPoints--;
+                skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
                 statAbility.level++;
                 statAbility.statMultiplier = statAbility.statMultiplier + 0.2f;
                 CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
@@ -139,6 +145,7 @@ public class SkillTree : MonoBehaviour {
         if (statAbility.available == false)
         {
             totalSkillPoints--;
+            skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
             statAbility.available = true;
             statAbility.level++;
             CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
@@ -150,6 +157,7 @@ public class SkillTree : MonoBehaviour {
             if (statAbility.level < 10)
             {
                 totalSkillPoints--;
+                skillTreeCharacter.GetComponent<CharacterStats>().skillPoints--;
                 statAbility.level++;
                 statAbility.statMultiplier = statAbility.statMultiplier + 0.2f;
                 CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
