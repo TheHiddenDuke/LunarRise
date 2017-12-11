@@ -126,9 +126,17 @@ public class cylMove : MonoBehaviour {
         }
         if (Input.GetButtonDown("Skill1"))
         {
-            Debug.Log("Right Input");
-            abilityCoolDown = actionbuttons[0].GetComponent<AbilityCoolDown>();
-            AbilityButtonInfo abilityButton = abilityCoolDown.GetComponentInChildren<AbilityButtonInfo>();
+            ButtonManager buttonManager = actionbuttons[0].GetComponent<ButtonManager>();
+            if (buttonManager.GetComponent<DragAndDropCell>().GetItem() != null)
+            {
+                buttonManager.OnAction("Skill1");
+            }
+            else
+            {
+                Debug.Log("Nothing on the button");
+            }
+            
+            /*AbilityButtonInfo abilityButton = abilityCoolDown.GetComponentInChildren<AbilityButtonInfo>();
             if ((abilityButton!= null)&&(abilityButton.ability.available))
             {
                 rcst.Triggered = true;
@@ -137,7 +145,7 @@ public class cylMove : MonoBehaviour {
             else
             {
                 Debug.Log("No ability");
-            }
+            }*/
 
         }
         if (Input.GetButtonDown("SkillTreeMenu"))

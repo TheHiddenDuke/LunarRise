@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : CharacterStats {
+public class PlayerStats : PartyStats {
 
     
     public bool running = false;
