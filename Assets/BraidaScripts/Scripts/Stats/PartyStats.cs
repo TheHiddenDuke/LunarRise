@@ -5,9 +5,13 @@ using UnityEngine;
 public class PartyStats : CharacterStats {
 
     public bool[] metalEffect = new bool[2];
-    public string[] metalName = new string[2]; 
-	// Use this for initialization
-	void Start () {
+    public string[] metalName = new string[2];
+    public int currentXp = 0;
+    public int currentlvl = 1;
+    public int nextLevelXp = 100;
+    public int skillPoints = 0;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	

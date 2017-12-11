@@ -11,11 +11,11 @@ public class CharacterStats : MonoBehaviour {
     public bool dead = false;
     public bool attacking = false;
     public bool underAttack = false;
-    public int currentXp =0;
-    public int currentlvl = 1;
-    public int nextLevelXp = 100;
+    
+    
+    
     public bool abilityAttack = false;
-    public int skillPoints = 0;
+    
     Animator anim;
     public Stat damage;
     public Stat armor;

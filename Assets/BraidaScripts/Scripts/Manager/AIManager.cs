@@ -13,9 +13,6 @@ public class AIManager : MonoBehaviour {
     }
     #endregion
 
-    public GameObject ai;
-    public void KillPlayer()
-    {
-        Destroy(ai);
-    }
+    public GameObject[] partyAllies = new GameObject[2];
+    
 }

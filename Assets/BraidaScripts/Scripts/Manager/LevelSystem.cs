@@ -14,12 +14,12 @@ public class LevelSystem : MonoBehaviour {
 
     public int gainedXP = 0;
     public GameObject[] partyMembers = new GameObject[3];
-    public CharacterStats[] partyStats = new CharacterStats[3];
+    public PartyStats[] partyStats = new PartyStats[3];
 	// Use this for initialization
 	void Start () {
 		for(int i = 0; i < partyMembers.Length; i++)
         {
-            partyStats[i] = partyMembers[i].GetComponent<CharacterStats>();            
+            partyStats[i] = partyMembers[i].GetComponent<PartyStats>();            
         }
 	}
 	
