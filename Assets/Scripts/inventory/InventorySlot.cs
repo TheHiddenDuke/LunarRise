@@ -8,6 +8,8 @@ public class InventorySlot : MonoBehaviour {
     Item item;
     public Image icon;
     public Button removeButton;
+    private int itemDmg;
+    private int itemDef;
 
     public void AddItem (Item newItem)
     {
@@ -36,4 +38,5 @@ public class InventorySlot : MonoBehaviour {
             item.Use();
         }
     }
+    
 }

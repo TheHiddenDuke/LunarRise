@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Equipment", menuName = "Inventory/Equipment")]
@@ -8,6 +9,8 @@ public class Equipment : Item {
 
     public int armorModifier;
     public int damageModifier;
+    public Text dmg;
+    public Text def;
 
     public override void Use()
     {
@@ -19,6 +22,13 @@ public class Equipment : Item {
         //Remove from inventory
 
         RemoveFromInventory();
+    }
+
+    private void OnMouseEnter()
+    {
+        
+        def.text = armorModifier.ToString();
+        dmg.text = damageModifier.ToString();
     }
 
 }
