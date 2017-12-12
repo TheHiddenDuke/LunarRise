@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<questLog>
+  <npcName>
+Lucy 
+   </npcName>
+   <title>
+Tutorial
+  </title>
+  <quest>
+    <lucy>
+ 
+      
+  <dialogue>
+Hello Abner, welcome to The Guild.
+  </dialogue>
+  <dialogue>
+Anyone is welcome. To become a member you will need to prove your worth by clearing out some trash mechs out back.
+  </dialogue>
+</lucy>
+
+
+    <abner>
+   <dialogue>
+Hi there lucy, was wondering if me and my friends could come to work under this guild?
+  </dialogue>
+  <dialogue>
+This is the tutorial where the player get's to know the working of combat.
+  </dialogue>
+  <dialogue>
+Alright, il see what i can do.
+  </dialogue>
+      </abner>
+  </quest>
+</questLog>

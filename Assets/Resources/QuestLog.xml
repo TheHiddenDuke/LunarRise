@@ -5,17 +5,17 @@
 Tutorial
   </title>
   <details>
-This is the tutorial where the player get's to know the working of combat.
+You have been asked by Lucy to clear out the mechs in the back alley as part of the entrance exam.
   </details>
   </quest>
   
   
   <quest>
     <title>
-Quest 1
+Trouble in the woods
     </title>
     <details>
-This is the first quest.
+Some woodsmen have come asking for the guilds help in the matter of a rather large mech that is running wild in the forest outside town.
     </details>
   </quest>
 </questLog>
