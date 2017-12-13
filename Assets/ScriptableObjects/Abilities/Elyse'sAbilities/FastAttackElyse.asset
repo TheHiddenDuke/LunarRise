@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f197aa3f82c0e4498ed3d818dd32026, type: 3}
+  m_Name: FastAttackElyse
+  m_EditorClassIdentifier: 
+  aname: New Ability
+  aSprite: {fileID: 0}
+  aSound: {fileID: 0}
+  aBaseCoolDown: 1
+  available: 0
+  requirement: {fileID: 0}
+  level: 0
+  metal: {fileID: 11400000, guid: 426e9436bf63d194d8573ea610a2f501, type: 2}
+  character: 
+  statMultiplier: 1.2
+  timeDuration: 30
