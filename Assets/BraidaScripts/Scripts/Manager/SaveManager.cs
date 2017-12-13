@@ -15,8 +15,8 @@ public class SaveManager : MonoBehaviour {
             gameInfo = (GameInfo)bf.Deserialize(file);
             file.Close();
             gameInfo.partyMembers[0].RetrieveInfo(PlayerManager.instance.player.GetComponent<PartyStats>());
-            gameInfo.partyMembers[1].RetrieveInfo(AIManager.instance.partyAllies[0].GetComponent<PartyStats>());
-            gameInfo.partyMembers[2].RetrieveInfo(AIManager.instance.partyAllies[1].GetComponent<PartyStats>());
+            gameInfo.partyMembers[1].RetrieveInfo(PlayerManager.instance.partyAllies[0].GetComponent<PartyStats>());
+            gameInfo.partyMembers[2].RetrieveInfo(PlayerManager.instance.partyAllies[1].GetComponent<PartyStats>());
 
         }
     }
@@ -27,9 +27,9 @@ public class SaveManager : MonoBehaviour {
         FileStream file = File.Create(Application.persistentDataPath + "/savedGame.gd"); //you can call it anything you want
         gameInfo.partyMembers[0].FillInfo(PlayerManager.instance.player.GetComponent<PartyStats>());
         Debug.Log(gameInfo.partyMembers[0].position);
-        gameInfo.partyMembers[1].FillInfo(AIManager.instance.partyAllies[0].GetComponent<PartyStats>());
+        gameInfo.partyMembers[1].FillInfo(PlayerManager.instance.partyAllies[0].GetComponent<PartyStats>());
         Debug.Log(gameInfo.partyMembers[1].position);
-        gameInfo.partyMembers[2].FillInfo(AIManager.instance.partyAllies[1].GetComponent<PartyStats>());
+        gameInfo.partyMembers[2].FillInfo(PlayerManager.instance.partyAllies[1].GetComponent<PartyStats>());
         Debug.Log(gameInfo.partyMembers[2].position);
         bf.Serialize(file, gameInfo);
         file.Close();

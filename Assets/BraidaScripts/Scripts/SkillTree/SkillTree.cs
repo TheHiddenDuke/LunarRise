@@ -8,7 +8,8 @@ public class SkillTree : MonoBehaviour {
     //public RayCastAbility[] activeAbilities = new RayCastAbility[4];
     //public StatsAbilities[] passiveAbilities = new StatsAbilities[4]; 
     public Button[] skillbuttons = new Button[3];
-
+    public PartyStats infoStats;
+    public Text[] playerInfo = new Text[6];
     public float totalSkillPoints = 0;
 
     public GameObject skillTreeCharacter;
@@ -20,31 +21,41 @@ public class SkillTree : MonoBehaviour {
 	void Update () {
         if (skillTreeCharacter.GetComponent<PartyStats>() != null)
         {
-            totalSkillPoints = skillTreeCharacter.GetComponent<PartyStats>().skillPoints;
-
+            infoStats = skillTreeCharacter.GetComponent<PartyStats>();
+            
+            playerInfo[0].text = infoStats.damage.getValue().ToString();
+            playerInfo[1].text = infoStats.armor.getValue().ToString();
+            playerInfo[2].text = infoStats.currentlvl.ToString();
+            playerInfo[3].text = infoStats.currentXp.ToString();
+            playerInfo[4].text = infoStats.currentHealth.ToString();
+            playerInfo[5].text = infoStats.skillPoints.ToString();
+            totalSkillPoints = infoStats.skillPoints;
+            
             if (totalSkillPoints == 0)
             {
-
+                
                 for (int i = 0; i < skillbuttons.Length; i++)
                 {
                     AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
                     if (skillAbility != null)
                     {
-                        if (skillAbility.available == true)
+                        skillbuttons[i].interactable = false;
+                        /*if (skillAbility.available == true)
                         {
                             skillbuttons[i].interactable = true;
                         }
                         else
                         {
                             skillbuttons[i].interactable = false;
-                        }
-                        skillbuttons[i].enabled = false;
+                        }*/
+                        //skillbuttons[i].enabled = false;
                     }
                 }
 
             }
-            else
+            if(totalSkillPoints!=0)
             {
+                
                 for (int i = 0; i < skillbuttons.Length; i++)
                 {
                     AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
@@ -114,6 +125,31 @@ public class SkillTree : MonoBehaviour {
             }
         }
     }
+    public void AllowAbility(BuffAbility activeAbility)
+    {
+        if (activeAbility.available == false)
+        {
+            if ((activeAbility.requirement == null) || (activeAbility.requirement.available == true))
+            {
+                totalSkillPoints--;
+                skillTreeCharacter.GetComponent<PartyStats>().skillPoints--;
+                activeAbility.level++;
+                activeAbility.available = true;
+                Debug.Log(activeAbility.aname);
+            }
+        }
+        else
+        {
+            if (activeAbility.level < 10)
+            {
+                totalSkillPoints--;
+                skillTreeCharacter.GetComponent<PartyStats>().skillPoints--;
+                activeAbility.level++;
+                activeAbility.statMultiplier = activeAbility.statMultiplier+0.2f;
+                Debug.Log(activeAbility.statMultiplier);
+            }
+        }
+    }
 
     public void StatAbilityDamage(StatsAbilities statAbility)
     {
@@ -178,7 +214,15 @@ public class SkillTree : MonoBehaviour {
             statAbility.available = true;
             statAbility.level++;
             CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
-            characterStats.maxHealth = (Mathf.RoundToInt((characterStats.maxHealth * statAbility.statMultiplier)));
+            if (characterStats.currentHealth == characterStats.maxHealth)
+            {
+                characterStats.maxHealth = (Mathf.RoundToInt((characterStats.maxHealth * statAbility.statMultiplier)));
+                characterStats.currentHealth = characterStats.maxHealth;
+            }
+            else
+            {
+                characterStats.maxHealth = (Mathf.RoundToInt((characterStats.maxHealth * statAbility.statMultiplier)));
+            }
             Debug.Log(skillTreeCharacter.name + " " + characterStats.maxHealth);
         }
         else
@@ -190,9 +234,17 @@ public class SkillTree : MonoBehaviour {
                 statAbility.level++;
                 statAbility.statMultiplier = statAbility.statMultiplier + 0.2f;
                 CharacterStats characterStats = skillTreeCharacter.GetComponent<CharacterStats>();
-                characterStats.maxHealth = (Mathf.RoundToInt((characterStats.maxHealth * statAbility.statMultiplier)));
+                if (characterStats.currentHealth == characterStats.maxHealth)
+                {
+                    characterStats.maxHealth = (Mathf.RoundToInt((characterStats.maxHealth * statAbility.statMultiplier)));
+                    characterStats.currentHealth = characterStats.maxHealth;
+                }
+                else
+                {
+                    characterStats.maxHealth = (Mathf.RoundToInt((characterStats.maxHealth * statAbility.statMultiplier)));
+                }
                 Debug.Log(skillTreeCharacter.name + " " + characterStats.maxHealth);
-                Debug.Log(statAbility.statMultiplier);
+                
             }
         }
     }

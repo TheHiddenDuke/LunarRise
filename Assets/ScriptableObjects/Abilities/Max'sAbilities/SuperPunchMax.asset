@@ -8,16 +8,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 035852a5f69c6b04bb817b3fe35f8eac, type: 3}
+  m_Script: {fileID: 0}
   m_Name: SuperPunchMax
-  m_EditorClassIdentifier: 
-  aname: SuperPunch
+  m_EditorClassIdentifier: Assembly-CSharp::RayCastAbilityAI
+  aname: New Ability
   aSprite: {fileID: 0}
   aSound: {fileID: 0}
   aBaseCoolDown: 1
   available: 0
-  requirement: {fileID: 11400000, guid: 3c351fa79c9ec324ab2589958b068a7e, type: 2}
-  level: 2
-  damage: 60
-  range: 8
+  requirement: {fileID: 11400000, guid: 9a5b1e8b81bc2c24eb4cd9e9d30ae7a5, type: 2}
+  level: 0
+  metal: {fileID: 0}
+  character: 
+  damage: 1
+  range: 50
   allyName: Max

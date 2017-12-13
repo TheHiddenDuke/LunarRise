@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/MetalItem")]
 public class MetalItem : Item {
     //public GameObject character = null;
-    public string character;
+    
     public float metalDuration;
     override public void Use()
     {

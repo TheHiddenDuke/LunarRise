@@ -11,6 +11,8 @@ public abstract class Ability : ScriptableObject {
     public bool available = false;
     public Ability requirement = null;
     public int level = 0;
+    public MetalItem metal;
+    public string character;
     
 
     public abstract void Initialize(GameObject obj);

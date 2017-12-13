@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonManager : MonoBehaviour {
     public AbilityButtonInfo abilityButton= null;
     public MetalInfo metalButton = null;
+    public BuffButtonInfo buffButton = null;
     // Use this for initialization
     void Start () {
 		
@@ -16,6 +17,20 @@ public class ButtonManager : MonoBehaviour {
 	}
     public void OnAction(string input)
     {
+        if ((buffButton = GetComponent<DragAndDropCell>().GetItem().GetComponent<BuffButtonInfo>()) != null)
+        {
+            if (buffButton.ability.available)
+            {
+                GetComponent<AbilityCoolDown>().ability = buffButton.ability;
+                PlayerManager.instance.player.GetComponent<RayCastSkillTrigger>().Triggered = true;
+                GetComponent<AbilityCoolDown>().Initialize(input, buffButton.character);
+                Debug.Log("Pegando o certo");
+            }
+            else
+            {
+                Debug.Log("unavailable ability");
+            }
+        }else
         if ((abilityButton = GetComponent<DragAndDropCell>().GetItem().GetComponent<AbilityButtonInfo>()) != null)
         {
             if (abilityButton.ability.available)
@@ -28,7 +43,8 @@ public class ButtonManager : MonoBehaviour {
             {
                 Debug.Log("unavailable ability");
             }
-        }
+        }else
+
         if ((metalButton = GetComponent<DragAndDropCell>().GetItem().GetComponent<MetalInfo>()) != null)
         {
             if (metalButton.amount!=0)

@@ -39,4 +39,15 @@ public class PartyStats : CharacterStats {
             }
         }
     }
+    public bool UnderMetalEfect(string metalname)
+    {
+        for(int i = 0; i<metalEffect.Length; i++)
+        {
+            if(metalEffect[i]&&(metalName[i] == metalname))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

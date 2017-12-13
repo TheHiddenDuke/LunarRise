@@ -18,4 +18,6 @@ MonoBehaviour:
   available: 0
   requirement: {fileID: 0}
   level: 0
-  statMultiplier: 1
+  metal: {fileID: 0}
+  character: 
+  statMultiplier: 1.2

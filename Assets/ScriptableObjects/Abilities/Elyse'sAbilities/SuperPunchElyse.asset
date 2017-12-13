@@ -8,16 +8,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 035852a5f69c6b04bb817b3fe35f8eac, type: 3}
+  m_Script: {fileID: 0}
   m_Name: SuperPunchElyse
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::RayCastAbilityAI
   aname: New Ability
   aSprite: {fileID: 0}
   aSound: {fileID: 0}
   aBaseCoolDown: 1
   available: 0
-  requirement: {fileID: 0}
+  requirement: {fileID: 11400000, guid: aae3b66d5b894cd439c248a039f708e1, type: 2}
   level: 0
+  metal: {fileID: 0}
+  character: 
   damage: 1
   range: 50
-  allyName: 
+  allyName: Elyse

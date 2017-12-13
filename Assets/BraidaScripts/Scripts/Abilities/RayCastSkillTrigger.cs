@@ -8,14 +8,21 @@ public class RayCastSkillTrigger : MonoBehaviour {
     public int skillDamage = 1;
     public float skillRange = 50f;
     public string allyname;
+    public MetalItem metal;
     public Transform character;
     public CharacterStats targetStats;
     public Transform target = null;
     public bool attackHappened = false;
     public bool Triggered = false;
     public GameObject[] allies = new GameObject[3];
+    /*the index of the metal effect vector on PartyStats corresponding to the metal name vector, also on PartyStats, that has the same name
+     * as the required metal for the ability is stored here when the trigger is initialized
+     * that way there is no need to search the index on each uptade
+    */
+    public int metalIndex = 0;
     public AIController aIController;
-    public PlayerStats playerStats;
+    public PartyStats partyStats;
+    
     public NavMeshAgent agent;
     public float distance;
 
@@ -30,11 +37,55 @@ public class RayCastSkillTrigger : MonoBehaviour {
     {
         if (Triggered)
         {
+            if (metal != null)
+            {
+                if (character = PlayerManager.instance.player.transform)
+                {
+
+                    if (partyStats.metalEffect[metalIndex])
+                    {
+                        if (Input.GetMouseButtonDown(0) || (target != null))
+                        {
+                            //Keep calli Activate method untillthe AI attacks the enemy
+                            if (!attackHappened)
+                            {
+                                ActivateMainPlayerAbility();
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        Debug.Log(character.name + " Not in metal state");
+                    }
+
+                }
+                else
+                {
+                    if (partyStats.metalEffect[metalIndex])
+                    {
+                        if (Input.GetMouseButtonDown(0) || (target != null))
+                        {
+                            //Keep calli Activate method untillthe AI attacks the enemy
+                            if (!attackHappened)
+                            {
+                                Activate();
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        Debug.Log(character.name + " Not in metal state");
+                    }
+                }
+            }
+            else { 
             //Keep waiting untill player choose a target
             if (Input.GetMouseButtonDown(0) || (target != null))
             {
                 //Keep calli Activate method untillthe AI attacks the enemy
-                if (!attackHappened) 
+                if (!attackHappened)
                 {
                     if (character == PlayerManager.instance.player.transform)
                     {
@@ -44,10 +95,12 @@ public class RayCastSkillTrigger : MonoBehaviour {
                     {
                         Activate();
                     }
-                    
+
                 }
             }
+
         }
+    }
         
     }
     public void ResetTrigger()

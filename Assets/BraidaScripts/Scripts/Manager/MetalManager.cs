@@ -19,11 +19,7 @@ public class MetalManager : MonoBehaviour {
     public string[] metalName = new string[3];
     // Use this for initialization
     void Start () {
-        /*characters = new GameObject[numberOfCharacters];
-        metalEffect = new bool[numberOfCharacters];
-        time = new float[numberOfCharacters];
-        metalDuration = new float[numberOfCharacters];
-        metalName = new string[numberOfCharacters];*/
+        
         for(int i = 0; i < time.Length; i++)
         {
             time[i] = 0;
@@ -56,6 +52,17 @@ public class MetalManager : MonoBehaviour {
             }
         }
 	}
+    public int AmongCharacters(GameObject obj)
+    {
+        for(int i = 0; i<characters.Length; i++)
+        {
+            if (characters[i] == obj) {
+                return i;
+            }
+           
+        }
+        return -1;
+    }
 
     public void GoTime(string metalName, string characterName, float duration)
     {

@@ -18,7 +18,8 @@ public class RayCastAbilityAI : Ability
         rcst.skillDamage = damage;
         rcst.skillRange = range;
         rcst.skillname = aname;
-        GameObject[] allies = rcst.allies;
+        rcst.metal = this.metal;
+        GameObject[] allies = PlayerManager.instance.partyAllies;
         Debug.Log("initalize ability");
         foreach (GameObject ally in allies)
         {
@@ -29,6 +30,16 @@ public class RayCastAbilityAI : Ability
                     rcst.character = ally.transform;
                     rcst.aIController = ally.GetComponent<AIController>();
                     rcst.agent = ally.GetComponent<NavMeshAgent>();
+                    rcst.partyStats = ally.GetComponent<PartyStats>();
+                    for (int i = 0; i < ally.GetComponent<PartyStats>().metalEffect.Length; i++)
+                    {
+                        if ((ally.GetComponent<PartyStats>().metalName[i] == metal.name))
+                        {
+                            rcst.metalIndex = i;
+
+                        }
+                    }
+
                     Debug.Log("right ally " + allyName);
 
                 }

@@ -24,6 +24,7 @@ public class AbilityCoolDown : MonoBehaviour
         Itemability = GetComponent<DragAndDropCell>().GetItem();
         if (Itemability != null)
         {
+            this.skillHolder = skillHolder;
             Debug.Log("Getting item correctly");
             ability = Itemability.GetComponent<AbilityButtonInfo>().ability;
             if (ability != null)
@@ -51,6 +52,13 @@ public class AbilityCoolDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        for (int i = 0; i < 3; i++) {
+            if (BuffManager.instance.buffEffect[i])
+            {
+                Debug.Log("Era pra estar True");
+            }
+        }
+        
         bool coolDownComplete = (Time.time > nextReadyTime);
         if (coolDownComplete)
         {

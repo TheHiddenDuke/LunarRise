@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarRise-c670bbfd311c702faec3ba073e0d7dd97ad896e0", "LunarRise-c670bbfd311c702faec3ba073e0d7dd97ad896e0.csproj", "{3F9B2BBC-82B4-56D0-AEAC-0CEA141C2CC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LunarRise-c670bbfd311c702faec3ba073e0d7dd97ad896e0.Editor", "LunarRise-c670bbfd311c702faec3ba073e0d7dd97ad896e0.Editor.csproj", "{54494CD1-A5F8-5773-B48C-43CA249D11EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F9B2BBC-82B4-56D0-AEAC-0CEA141C2CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F9B2BBC-82B4-56D0-AEAC-0CEA141C2CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F9B2BBC-82B4-56D0-AEAC-0CEA141C2CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F9B2BBC-82B4-56D0-AEAC-0CEA141C2CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54494CD1-A5F8-5773-B48C-43CA249D11EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54494CD1-A5F8-5773-B48C-43CA249D11EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54494CD1-A5F8-5773-B48C-43CA249D11EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54494CD1-A5F8-5773-B48C-43CA249D11EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

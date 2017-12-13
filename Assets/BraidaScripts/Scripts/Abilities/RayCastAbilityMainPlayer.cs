@@ -18,8 +18,18 @@ public class RayCastAbilityMainPlayer : Ability
         rcst.skillDamage = damage;
         rcst.skillRange = range;
         rcst.skillname = aname;
+        rcst.metal = this.metal;
         rcst.character = PlayerManager.instance.player.transform;
-        
+        rcst.partyStats = PlayerManager.instance.player.GetComponent<PartyStats>();
+        for (int i = 0; i < PlayerManager.instance.player.GetComponent<PartyStats>().metalEffect.Length; i++)
+        {
+            if ((PlayerManager.instance.player.GetComponent<PartyStats>().metalName[i] == metal.name))
+            {
+                rcst.metalIndex = i;
+
+            }
+        }
+
 
     }
 
