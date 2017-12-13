@@ -8,7 +8,7 @@ public class SaveManager : MonoBehaviour {
     public GameInfo gameInfo;
     private void Start()
     {
-        /*if (File.Exists(Application.persistentDataPath + "/savedGame.gd"))
+        if (File.Exists(Application.persistentDataPath + "/savedGame.gd"))
         {
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedGame.gd", FileMode.Open);
@@ -18,7 +18,7 @@ public class SaveManager : MonoBehaviour {
             gameInfo.partyMembers[1].RetrieveInfo(AIManager.instance.partyAllies[0].GetComponent<PartyStats>());
             gameInfo.partyMembers[2].RetrieveInfo(AIManager.instance.partyAllies[1].GetComponent<PartyStats>());
 
-        }*/
+        }
     }
     public void Save()
     {
