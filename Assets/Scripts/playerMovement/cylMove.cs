@@ -31,6 +31,7 @@ public class cylMove : MonoBehaviour {
     AbilityCoolDown abilityCoolDown;
     public Ability[] abilities = new Ability[4];
     public RayCastSkillTrigger rcst;
+    public string skillInput = "Skill";
 
     private GameObject myInv;
     private GameObject myMenu;
@@ -124,30 +125,25 @@ public class cylMove : MonoBehaviour {
 
                       
         }
-        if (Input.GetButtonDown("Skill1"))
+        for(int i=0; i < actionbuttons.Length; i++)
         {
-            ButtonManager buttonManager = actionbuttons[0].GetComponent<ButtonManager>();
-            if (buttonManager.GetComponent<DragAndDropCell>().GetItem() != null)
+            if (Input.GetButtonDown(skillInput+(i+1).ToString()))
             {
-                buttonManager.OnAction("Skill1");
-            }
-            else
-            {
-                Debug.Log("Nothing on the button");
-            }
-            
-            /*AbilityButtonInfo abilityButton = abilityCoolDown.GetComponentInChildren<AbilityButtonInfo>();
-            if ((abilityButton!= null)&&(abilityButton.ability.available))
-            {
-                rcst.Triggered = true;
-                abilityCoolDown.Initialize("Skill1", PlayerManager.instance.player);
-            }
-            else
-            {
-                Debug.Log("No ability");
-            }*/
+                Debug.Log(skillInput + (i + 1).ToString());
+                ButtonManager buttonManager = actionbuttons[i].GetComponent<ButtonManager>();
+                if (buttonManager.GetComponent<DragAndDropCell>().GetItem() != null)
+                {
+                    buttonManager.OnAction(skillInput+(i+1));
+                }
+                else
+                {
+                    Debug.Log("Nothing on the button");
+                }
 
+
+            }
         }
+        
         if (Input.GetButtonDown("SkillTreeMenu"))
         {
             //if (!changedMenu) {
