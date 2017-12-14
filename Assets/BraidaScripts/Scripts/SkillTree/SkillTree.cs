@@ -19,61 +19,64 @@ public class SkillTree : MonoBehaviour {
 	
 	
 	void Update () {
-        if (skillTreeCharacter.GetComponent<PartyStats>() != null)
+        if (skillTreeCharacter != null)
         {
-            infoStats = skillTreeCharacter.GetComponent<PartyStats>();
-            
-            playerInfo[0].text = infoStats.damage.getValue().ToString();
-            playerInfo[1].text = infoStats.armor.getValue().ToString();
-            playerInfo[2].text = infoStats.currentlvl.ToString();
-            playerInfo[3].text = infoStats.currentXp.ToString();
-            playerInfo[4].text = infoStats.currentHealth.ToString();
-            playerInfo[5].text = infoStats.skillPoints.ToString();
-            totalSkillPoints = infoStats.skillPoints;
-            
-            if (totalSkillPoints == 0)
+            if (skillTreeCharacter.GetComponent<PartyStats>() != null)
             {
-                
-                for (int i = 0; i < skillbuttons.Length; i++)
-                {
-                    AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
-                    if (skillAbility != null)
-                    {
-                        skillbuttons[i].interactable = false;
-                        /*if (skillAbility.available == true)
-                        {
-                            skillbuttons[i].interactable = true;
-                        }
-                        else
-                        {
-                            skillbuttons[i].interactable = false;
-                        }*/
-                        //skillbuttons[i].enabled = false;
-                    }
-                }
+                infoStats = skillTreeCharacter.GetComponent<PartyStats>();
 
-            }
-            if(totalSkillPoints!=0)
-            {
-                
-                for (int i = 0; i < skillbuttons.Length; i++)
+                playerInfo[0].text = infoStats.damage.getValue().ToString();
+                playerInfo[1].text = infoStats.armor.getValue().ToString();
+                playerInfo[2].text = infoStats.currentlvl.ToString();
+                playerInfo[3].text = infoStats.currentXp.ToString();
+                playerInfo[4].text = infoStats.currentHealth.ToString();
+                playerInfo[5].text = infoStats.skillPoints.ToString();
+                totalSkillPoints = infoStats.skillPoints;
+
+                if (totalSkillPoints == 0)
                 {
-                    AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
-                    if (skillAbility != null)
+
+                    for (int i = 0; i < skillbuttons.Length; i++)
                     {
-                        if ((skillAbility.requirement == null) || (skillAbility.available == true) || (skillAbility.requirement.available))
-                        {
-                            skillbuttons[i].interactable = true;
-                        }
-                        else
+                        AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
+                        if (skillAbility != null)
                         {
                             skillbuttons[i].interactable = false;
+                            /*if (skillAbility.available == true)
+                            {
+                                skillbuttons[i].interactable = true;
+                            }
+                            else
+                            {
+                                skillbuttons[i].interactable = false;
+                            }*/
+                            //skillbuttons[i].enabled = false;
+                        }
+                    }
+
+                }
+                if (totalSkillPoints != 0)
+                {
+
+                    for (int i = 0; i < skillbuttons.Length; i++)
+                    {
+                        AbilityButtonInfo skillAbility = skillbuttons[i].GetComponent<AbilityButtonInfo>();
+                        if (skillAbility != null)
+                        {
+                            if ((skillAbility.requirement == null) || (skillAbility.available == true) || (skillAbility.requirement.available))
+                            {
+                                skillbuttons[i].interactable = true;
+                            }
+                            else
+                            {
+                                skillbuttons[i].interactable = false;
+                            }
                         }
                     }
                 }
             }
         }
-	}
+        }
 
     public void AllowAbility(RayCastAbilityAI activeAbility)
     {

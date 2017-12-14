@@ -11,12 +11,14 @@ public class AllyAnimator : MonoBehaviour {
     public float life;
     PlayerStats playerStats;
     AIStats aIStats;
+    AIController aIController;
 
     // Use this for initialization
     void Start () {
         agent = GetComponentInParent<NavMeshAgent>();
         aIStats = GetComponentInParent<AIStats>();
         anim = GetComponent<Animator>();
+        aIController = GetComponentInParent<AIController>();
         anim.SetBool("Running", false);
         anim.SetBool("Punching", false);
         playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
@@ -30,17 +32,21 @@ public class AllyAnimator : MonoBehaviour {
 
         if (playerStats.running)
         {
+            agent.speed = 15;
+            agent.acceleration = 5;
             anim.SetBool("Running", true);
         }
         if (!playerStats.running)
         {
+            agent.speed = 5;
+            agent.acceleration = 3;
             anim.SetBool("Running", false);
         }
-        if (aIStats.attacking)
+        if (aIStats.attacking&&(aIController.abilityRecuperationTime<=0))
         {
             anim.SetBool("Punching", true);
         }
-        if (!aIStats.attacking)
+        else 
         {
             anim.SetBool("Punching", false);
         }

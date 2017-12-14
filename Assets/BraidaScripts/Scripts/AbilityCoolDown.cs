@@ -10,7 +10,7 @@ public class AbilityCoolDown : MonoBehaviour
 
     [SerializeField] public Ability ability;
     [SerializeField] private GameObject skillHolder;
-    
+    public bool abilityTriggered = false;
     private float coolDownDuration;
     private float nextReadyTime;
     private float coolDownTimeLeft;
@@ -31,6 +31,7 @@ public class AbilityCoolDown : MonoBehaviour
             {
                 Debug.Log("Getting ability correctly");
                 abilityButtonAxisName = aButton;
+                abilityTriggered = true;
                 coolDownDuration = ability.aBaseCoolDown;
                 if (ability.available)
                 {
@@ -52,18 +53,12 @@ public class AbilityCoolDown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        for (int i = 0; i < 3; i++) {
-            if (BuffManager.instance.buffEffect[i])
-            {
-                Debug.Log("Era pra estar True");
-            }
-        }
-        
+                
         bool coolDownComplete = (Time.time > nextReadyTime);
         if (coolDownComplete)
         {
             
-            if (Input.GetButtonDown(abilityButtonAxisName))
+            if (abilityTriggered)
             {
                 
                 if(ability!= null) { 

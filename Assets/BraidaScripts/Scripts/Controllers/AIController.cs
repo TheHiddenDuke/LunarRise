@@ -16,6 +16,8 @@ public class AIController : MonoBehaviour
     public Transform focus;
     PlayerStats mainPlayerStats;
     CharacterCombat combat;
+    //This variable is to make sure that the character will keep its focus on the target durant the duration of tha ability's animation
+    public float abilityRecuperationTime = 0;
     
 
 
@@ -104,19 +106,21 @@ public class AIController : MonoBehaviour
                         }
                     }
                 }
-                else if (aiStats.abilityAttack)
+                else if (aiStats.abilityAttack||abilityRecuperationTime>0)
             {
-
+                abilityRecuperationTime -= Time.deltaTime;
             }
-            else
-                {
+            else{
                 
-                {
+                
                     targetStats = null;
                     goal = mainPlayer.transform;
                     focus = goal;
                     aiStats.attacking = false;
-                }
+                    aiStats.underAttack = false;
+                    target = null;
+
+                
                     //aiStats.underAttack = false;
                 }
             //}
@@ -126,7 +130,11 @@ public class AIController : MonoBehaviour
             
             //target = goal.GetComponent<GameObject>();
         }
-        FaceTarget();
+        if (focus != null)
+        {
+            FaceTarget();
+        }
+        
       
 
     }
@@ -157,28 +165,29 @@ public class AIController : MonoBehaviour
     }
      
     void moveTo () {
-
-        if (goal != null)
+        if (agent.enabled==true)
         {
-            float dist = Vector3.Distance(goal.position, transform.position);
-
-            if (dist > 5f)
+            if (goal != null)
             {
-                float distOther = Vector3.Distance(other.position, transform.position);
-                /*
-                if (distOther < 2f)
+                float dist = Vector3.Distance(goal.position, transform.position);
+
+                if (dist > 5f)
                 {
-                    transform.position = transform.position;
-                }*/
-                agent.destination = goal.position;
+                    float distOther = Vector3.Distance(other.position, transform.position);
+                    /*
+                    if (distOther < 2f)
+                    {
+                        transform.position = transform.position;
+                    }*/
+                    agent.destination = goal.position;
 
-            }
-            else
-            {
-                agent.destination = transform.position;
+                }
+                else
+                {
+                    agent.destination = transform.position;
+                }
             }
         }
-         
     }
          
     void FaceTarget()

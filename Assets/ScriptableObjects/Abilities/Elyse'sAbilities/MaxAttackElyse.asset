@@ -15,9 +15,9 @@ MonoBehaviour:
   aSprite: {fileID: 0}
   aSound: {fileID: 0}
   aBaseCoolDown: 1
-  available: 0
+  available: 1
   requirement: {fileID: 0}
-  level: 0
+  level: 1
   metal: {fileID: 0}
   character: 
-  statMultiplier: 1.2
+  statMultiplier: 1.4000001

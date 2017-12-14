@@ -60,6 +60,7 @@ public class cylMove : MonoBehaviour {
         myEquip.SetActive(false);
         mySkillTree = GameObject.FindGameObjectWithTag("SkillTreeMenu");
         mySkillTree.SetActive(false);
+        anim = GetComponentInChildren<Animator>();
 
         //abilityCoolDown = GetComponent<AbilityCoolDown>();
         currentStamina = maxStamina;
@@ -69,6 +70,7 @@ public class cylMove : MonoBehaviour {
 
     void Update()
     {
+        
         
         transform.rotation = Quaternion.Euler(lockPos, transform.rotation.eulerAngles.y, lockPos);
         if (Input.GetButton("Run") && currentStamina >0)
@@ -115,7 +117,7 @@ public class cylMove : MonoBehaviour {
                 moveDirection *= speed;
             }
             if (Input.GetButton("Jump") && currentStamina > 0) {
-                 
+                anim.SetTrigger("Jump");
                 moveDirection.y = jumpSpeed;
                 currentStamina = currentStamina - 1f;
                 timeLeft = 1f;
@@ -188,7 +190,11 @@ public class cylMove : MonoBehaviour {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    SetFocus(interactable);
+                    if (!playerStats.abilityAttack)
+                    {
+                        
+                        SetFocus(interactable);
+                    }
                     /*if(interactable is EnemyInteraction)
                     {
                         

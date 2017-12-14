@@ -35,8 +35,11 @@ public class EnemyController : MonoBehaviour {
         {
             if (targetStats != null)
             {
-                targetStats.underAttack = false;
-               
+                //Informs all the characters that they are no longer under attack
+                //If this sets a false positive is not a problem sisnce underattack will be true again after the next damage
+                PlayerManager.instance.player.GetComponent<PlayerStats>().underAttack = false;
+                PlayerManager.instance.partyAllies[0].GetComponent<PartyStats>().underAttack = false;
+                PlayerManager.instance.partyAllies[1].GetComponent<PartyStats>().underAttack = false;
             }
             target = null;
             enemyStats.attacking = false;
@@ -62,12 +65,18 @@ public class EnemyController : MonoBehaviour {
                         targetStats.underAttack = true;
 
                     }
-                    if (targetStats == null)
+                    if (targetStats.dead)
                     {
+                        enemyStats.underAttack = false;
                         enemyStats.attacking = false;
                     }
                     FaceTarget();
                 }
+            }
+            else
+            {
+                enemyStats.attacking = false;
+                enemyStats.underAttack = false;
             }
             /*if(distance> lookRadius)
             {

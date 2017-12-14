@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyInteraction : Interactable{
-    PlayerManager playerManager;
+    
     CharacterStats myStats;
     CharacterStats playerStats;
 
     void Start()
     {
-        playerManager = PlayerManager.instance;
+       
         myStats = GetComponent<CharacterStats>();
         
     }
@@ -18,13 +18,19 @@ public class EnemyInteraction : Interactable{
     {
         base.Interact();
         
-        CharacterCombat playerCombat = playerManager.player.GetComponent<CharacterCombat>();
-        CharacterStats playerStats = playerManager.player.GetComponent<CharacterStats>();
+        CharacterCombat playerCombat = PlayerManager.instance.player.GetComponent<CharacterCombat>();
+        CharacterStats playerStats = PlayerManager.instance.player.GetComponent<CharacterStats>();
+        Animator anim = PlayerManager.instance.player.GetComponentInChildren<Animator>();
         if (playerCombat != null)
         {
-
-            playerCombat.Attack(myStats);
-            playerStats.attacking = true;
+            
+            if (!playerStats.abilityAttack)
+            {
+                playerCombat.Attack(myStats);
+                anim.SetTrigger("Punch");
+                playerStats.attacking = true;
+                Debug.Log("Enemy received a regular punch");
+            }
             }
     }
 }

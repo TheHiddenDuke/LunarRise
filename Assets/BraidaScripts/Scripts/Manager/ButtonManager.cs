@@ -22,7 +22,7 @@ public class ButtonManager : MonoBehaviour {
             if (buffButton.ability.available)
             {
                 GetComponent<AbilityCoolDown>().ability = buffButton.ability;
-                PlayerManager.instance.player.GetComponent<RayCastSkillTrigger>().Triggered = true;
+                //PlayerManager.instance.player.GetComponent<RayCastSkillTrigger>().Triggered = true;
                 GetComponent<AbilityCoolDown>().Initialize(input, buffButton.character);
                 Debug.Log("Pegando o certo");
             }
@@ -36,7 +36,7 @@ public class ButtonManager : MonoBehaviour {
             if (abilityButton.ability.available)
             {
                 GetComponent<AbilityCoolDown>().ability = abilityButton.ability;
-                PlayerManager.instance.player.GetComponent<RayCastSkillTrigger>().Triggered = true;
+                //PlayerManager.instance.player.GetComponent<RayCastSkillTrigger>().Triggered = true;
                 GetComponent<AbilityCoolDown>().Initialize(input, PlayerManager.instance.player);
             }
             else

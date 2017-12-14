@@ -2049,6 +2049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  life: 0
 --- !u!114 &114565970148508738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2062,13 +2063,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
+  currentHealth: 0
   showHealth: 0
   dead: 0
+  attacking: 0
+  underAttack: 0
+  abilityAttack: 0
   damage:
     baseValue: 5
   armor:
     baseValue: 1
-  attackMode: 0
+  metalEffect: 0000
+  metalName:
+  - 
+  - 
+  currentXp: 0
+  currentlvl: 1
+  nextLevelXp: 100
+  skillPoints: 0
   running: 0
 --- !u!114 &114614994473566556
 MonoBehaviour:
@@ -2098,8 +2110,10 @@ MonoBehaviour:
   target: {fileID: 0}
   goal: {fileID: 0}
   other: {fileID: 0}
+  aiStats: {fileID: 0}
   targetStats: {fileID: 0}
   focus: {fileID: 0}
+  abilityRecuperationTime: 0
   lookRadius: 10
 --- !u!136 &136391147049351766
 CapsuleCollider:

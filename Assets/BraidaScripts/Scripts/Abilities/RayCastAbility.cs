@@ -9,6 +9,7 @@ public class RayCastAbilityAI : Ability
     public float range = 50f;
     private RayCastSkillTrigger rcst;
     public string allyName;
+    public int skillframes;
 
     public override void Initialize(GameObject obj)
     {
@@ -18,6 +19,7 @@ public class RayCastAbilityAI : Ability
         rcst.skillDamage = damage;
         rcst.skillRange = range;
         rcst.skillname = aname;
+        rcst.skillframes = skillframes;
         rcst.metal = this.metal;
         GameObject[] allies = PlayerManager.instance.partyAllies;
         Debug.Log("initalize ability");

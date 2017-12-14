@@ -14,7 +14,10 @@ public class CharacterCombat : MonoBehaviour {
     }
     private void Update()
     {
-        attackCooldown -= Time.deltaTime;
+        if (!mystats.dead)
+        {
+            attackCooldown -= Time.deltaTime;
+        }
     }
     public void Attack(CharacterStats targetStats)
     {
@@ -22,10 +25,11 @@ public class CharacterCombat : MonoBehaviour {
         {
             if (targetStats != null)
             {
-                  
-                StartCoroutine(DoDamage(targetStats, attackDelay));
-                attackCooldown = 1f / attackSpeed;
-            
+                if (!mystats.dead)
+                {
+                    StartCoroutine(DoDamage(targetStats, attackDelay));
+                    attackCooldown = 1f / attackSpeed;
+                }
             }
          }
         
@@ -34,9 +38,9 @@ public class CharacterCombat : MonoBehaviour {
     IEnumerator DoDamage(CharacterStats stats, float delay)
     {
         yield return new WaitForSeconds(delay);
-        if (!stats.dead)
+        if ((!stats.dead)&&(!mystats.dead))//The character cannot attack if it id dead or its target is dead
         {
-            stats.TakeDamage(mystats.damage.getValue());
+            stats.TakeDamage(mystats.damage.getValue(), this.name);
         }
     }
     

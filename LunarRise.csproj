@@ -250,6 +250,7 @@
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\SaveManager.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\MetalInfo.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\MoveCamera.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\PlayerAnimator.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\SkillTree\SkillTree.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\SkillTree\SkillTreeMenu.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Stats\AIStats.cs" />
@@ -292,6 +293,7 @@
     <Compile Include="Assets\SimpleDragAndDrop\Scripts\DragAndDropCell.cs" />
     <Compile Include="Assets\SimpleDragAndDrop\Scripts\DragAndDropItem.cs" />
     <Compile Include="Assets\SimpleDragAndDrop\Scripts\DummyControlUnit.cs" />
+    <Compile Include="Assets\SpeedDetection.cs" />
     <Compile Include="Assets\Steampunk\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Steampunk\Standard Assets\Characters\FirstPersonCharacter\Scripts\HeadBob.cs" />
     <Compile Include="Assets\Steampunk\Standard Assets\Characters\FirstPersonCharacter\Scripts\MouseLook.cs" />

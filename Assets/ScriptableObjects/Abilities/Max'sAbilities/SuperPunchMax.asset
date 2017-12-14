@@ -15,11 +15,12 @@ MonoBehaviour:
   aSprite: {fileID: 0}
   aSound: {fileID: 0}
   aBaseCoolDown: 1
-  available: 0
+  available: 1
   requirement: {fileID: 11400000, guid: 9a5b1e8b81bc2c24eb4cd9e9d30ae7a5, type: 2}
   level: 0
-  metal: {fileID: 0}
+  metal: {fileID: 11400000, guid: 131bc607d7daf454a93e7e181356bd64, type: 2}
   character: 
   damage: 1
-  range: 50
+  range: 10
   allyName: Max
+  skillframes: 90

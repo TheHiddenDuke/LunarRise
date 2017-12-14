@@ -22,83 +22,90 @@ public class RayCastSkillTrigger : MonoBehaviour {
     public int metalIndex = 0;
     public AIController aIController;
     public PartyStats partyStats;
-    
+    public int skillframes;
     public NavMeshAgent agent;
     public float distance;
 
-
+    public Animator anim;
     public void Initialize()
     {
         cam = Camera.main;
         Debug.Log("initialize ok");
-        //AIController aIController = character.GetComponent<AIController>();
+        
     }
     private void Update()
     {
         if (Triggered)
         {
-            if (metal != null)
-            {
-                if (character = PlayerManager.instance.player.transform)
-                {
-
-                    if (partyStats.metalEffect[metalIndex])
-                    {
-                        if (Input.GetMouseButtonDown(0) || (target != null))
-                        {
-                            //Keep calli Activate method untillthe AI attacks the enemy
-                            if (!attackHappened)
-                            {
-                                ActivateMainPlayerAbility();
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        Debug.Log(character.name + " Not in metal state");
-                    }
-
-                }
-                else
-                {
-                    if (partyStats.metalEffect[metalIndex])
-                    {
-                        if (Input.GetMouseButtonDown(0) || (target != null))
-                        {
-                            //Keep calli Activate method untillthe AI attacks the enemy
-                            if (!attackHappened)
-                            {
-                                Activate();
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        Debug.Log(character.name + " Not in metal state");
-                    }
-                }
-            }
-            else { 
-            //Keep waiting untill player choose a target
-            if (Input.GetMouseButtonDown(0) || (target != null))
-            {
-                //Keep calli Activate method untillthe AI attacks the enemy
-                if (!attackHappened)
+            if (character != null) {
+                anim = character.GetComponentInChildren<Animator>();
+                if (metal != null)
                 {
                     if (character == PlayerManager.instance.player.transform)
                     {
-                        ActivateMainPlayerAbility();
+                        anim = character.GetComponentInChildren<Animator>();
+                        if (partyStats.metalEffect[metalIndex])
+                        {
+                            partyStats.abilityAttack = true;
+                            if (Input.GetMouseButtonDown(0) || (target != null))
+                            {
+                                //Keep calling Activate method untill the player attacks the enemy
+                                if (!attackHappened)
+                                {
+                                    
+                                    ActivateMainPlayerAbility();
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            Debug.Log(character.name + " Not in metal state");
+                        }
+
                     }
                     else
                     {
-                        Activate();
+                        if (partyStats.metalEffect[metalIndex])
+                        {
+                            if (Input.GetMouseButtonDown(0) || (target != null))
+                            {
+                                //Keep calling Activate method untill the AI attacks the enemy
+                                if (!attackHappened)
+                                {
+                                   
+                                    Activate();
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            Debug.Log(character.name + " Not in metal state");
+                        }
+                    }
+                }
+                else
+                {
+                    //Keep waiting untill player choose a target
+                    if (Input.GetMouseButtonDown(0) || (target != null))
+                    {
+                        //Keep calli Activate method untillthe AI attacks the enemy
+                        if (!attackHappened)
+                        {
+                            if (character == PlayerManager.instance.player.transform)
+                            {
+                                ActivateMainPlayerAbility();
+                            }
+                            else
+                            {
+                                Activate();
+                            }
+
+                        }
                     }
 
                 }
-            }
-
         }
     }
         
@@ -111,8 +118,8 @@ public class RayCastSkillTrigger : MonoBehaviour {
         attackHappened = false;
         Triggered = false;
         aIController= null;
-     agent = null;
-    distance = 0;
+        agent = null;
+        distance = 0;
 
 }
     public void ActivateMainPlayerAbility()
@@ -126,6 +133,7 @@ public class RayCastSkillTrigger : MonoBehaviour {
             if (hit.transform.GetComponent<EnemyController>() != null)
             {
                 
+                
                 target = hit.transform;
                 if (target != null)
                 {   targetStats = hit.transform.GetComponent<CharacterStats>();
@@ -135,9 +143,12 @@ public class RayCastSkillTrigger : MonoBehaviour {
 
                         if (targetStats != null)
                         {
-                            targetStats.TakeDamage(skillDamage);
+                            targetStats.TakeDamage(skillDamage, this.name);
+                            anim.SetTrigger("SuperKick");
                             Debug.Log(target.name + " received" + skillDamage.ToString() + " from " + skillname);
                             attackHappened = true;
+                            partyStats.abilityAttack = false;
+                            ResetTrigger();
                            
 
                         }
@@ -154,7 +165,14 @@ public class RayCastSkillTrigger : MonoBehaviour {
                 }
                 
             }
+            else
+            {
+                Debug.Log("Desistiu da skill");
+                ResetTrigger();
+                partyStats.abilityAttack = false;
+            }
         }
+        
 
     }
     // Update is called once per frame
@@ -183,15 +201,17 @@ public class RayCastSkillTrigger : MonoBehaviour {
                     aIController.target = target.GetComponent<GameObject>();
                     targetStats = hit.transform.GetComponent<CharacterStats>();
                     distance = Vector3.Distance(target.transform.position, character.transform.position);
-                    if (distance <= skillRange+1)
+                    if (distance <= skillRange+2)
                     {
 
                         if (targetStats != null)
                         {
-                            targetStats.TakeDamage(skillDamage);
+                            targetStats.TakeDamage(skillDamage, this.name);
+                            anim.SetTrigger("SuperPunch");
                             Debug.Log(target.name + " received" + skillDamage.ToString() + " from " + skillname);
                             attackHappened = true;
                             aIController.target = null;
+                            aIController.abilityRecuperationTime = skillframes*Time.deltaTime;
                             aIController.aiStats.abilityAttack = false;
                             ResetTrigger();
 
@@ -207,6 +227,7 @@ public class RayCastSkillTrigger : MonoBehaviour {
                     aIController.focus = aIController.goal;
                 }
             }
+            
         }
 
     }

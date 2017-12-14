@@ -34,8 +34,9 @@ public class CharacterStats : MonoBehaviour {
         
          
     }
-    
-    public void TakeDamage (int damage)
+    public void TakeDamageFromAbility(int damage) { 
+}
+    public void TakeDamage (int damage, string namel)
     {
         
         damage -= armor.getValue();
@@ -44,7 +45,7 @@ public class CharacterStats : MonoBehaviour {
         
             
             currentHealth -= damage;
-            Debug.Log(transform.name + " takes " + damage + " damage.");
+            Debug.Log(transform.name + " takes " + damage + " damage." + namel);
             underAttack = true;
             if (currentHealth <= 0.1f)
             {
