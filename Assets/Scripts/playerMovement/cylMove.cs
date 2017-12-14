@@ -145,17 +145,25 @@ public class cylMove : MonoBehaviour {
 
             }
         }
-        
+        //Skill Tree Menu
         if (Input.GetButtonDown("SkillTreeMenu"))
         {
-            //if (!changedMenu) {
-                mySkillTree.SetActive(!mySkillTree.activeSelf);
-            //}
-                     
             
-           
+                mySkillTree.SetActive(!mySkillTree.activeSelf);                     
         }
-
+        if (Input.GetButtonDown("Pause"))
+        {
+            if (Time.timeScale == 1)
+            {                
+                Time.timeScale = 0;
+                
+            }
+            else if(Time.timeScale == 0)
+            {
+                Time.timeScale = 1;
+                
+            }
+        }
         //Inventory
         if (Input.GetButtonDown("Inventory")){
 
@@ -190,17 +198,11 @@ public class cylMove : MonoBehaviour {
                 Interactable interactable = hit.collider.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    if (!playerStats.abilityAttack)
+                    if (!playerStats.abilityAttack) //If the player is going to use a skill, let the skill trigger deal with focus
                     {
-                        
                         SetFocus(interactable);
                     }
-                    /*if(interactable is EnemyInteraction)
-                    {
-                        
-                        playerStats.attackMode = true;
-
-                    }*/
+                   
                 }
                 else
                 {
