@@ -10,7 +10,7 @@ public class MetalItem : Item {
     {
         
     }
-   public void Use(string character)
+   public void Use(GameObject character)
     {
         if (character != null)
         {

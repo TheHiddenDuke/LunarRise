@@ -6,6 +6,7 @@ public class ButtonManager : MonoBehaviour {
     public AbilityButtonInfo abilityButton= null;
     public MetalInfo metalButton = null;
     public BuffButtonInfo buffButton = null;
+    public HealthInfo healthButton = null;
     // Use this for initialization
     void Start () {
 		
@@ -49,13 +50,24 @@ public class ButtonManager : MonoBehaviour {
         {
             if (metalButton.amount!=0)
             {
-                metalButton.metal.Use(metalButton.character.name);
+                metalButton.metal.Use(metalButton.character);
                 //Debug.Log("metal ok until here");
                 GetComponent<DragAndDropCell>().GetItem().GetComponent<MetalInfo>().amount--;
             }
             else
             {
                 Debug.Log("not enough metal");
+            }
+        }else if((healthButton = GetComponent<DragAndDropCell>().GetItem().GetComponent<HealthInfo>()) != null)
+        {
+            if (healthButton.amount != 0)
+            {
+                healthButton.health.Use(healthButton.character);
+                healthButton.amount--;
+            }
+            else
+            {
+                Debug.Log("Not enough health");
             }
         }
     }

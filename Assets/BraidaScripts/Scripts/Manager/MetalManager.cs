@@ -64,12 +64,12 @@ public class MetalManager : MonoBehaviour {
         return -1;
     }
 
-    public void GoTime(string metalName, string characterName, float duration)
+    public void GoTime(string metalName, GameObject characterName, float duration)
     {
         Debug.Log("Ta indo");
         for (int i = 0; i < characters.Length; i++)
         {
-            if (characters[i].name == characterName)
+            if (characters[i] == characterName)
             {
                 if (this.metalName[i] == null)
                 {

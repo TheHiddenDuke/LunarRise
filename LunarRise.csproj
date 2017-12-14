@@ -241,6 +241,7 @@
     <Compile Include="Assets\BraidaScripts\Scripts\Enemy.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\EnemyInteraction.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\FemaleAnimator.cs" />
+    <Compile Include="Assets\BraidaScripts\Scripts\HealthInfo.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\AbilitiesManager.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\AIManager.cs" />
     <Compile Include="Assets\BraidaScripts\Scripts\Manager\BuffManager.cs" />
@@ -271,6 +272,7 @@
     <Compile Include="Assets\Scripts\items\DragTransform.cs" />
     <Compile Include="Assets\Scripts\items\DropZone.cs" />
     <Compile Include="Assets\Scripts\items\Equipment.cs" />
+    <Compile Include="Assets\Scripts\items\HealthItem.cs" />
     <Compile Include="Assets\Scripts\items\Item.cs" />
     <Compile Include="Assets\Scripts\items\ItemPickup.cs" />
     <Compile Include="Assets\Scripts\items\MetalItem.cs" />
