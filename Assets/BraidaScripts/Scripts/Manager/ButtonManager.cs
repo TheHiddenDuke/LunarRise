@@ -48,9 +48,10 @@ public class ButtonManager : MonoBehaviour {
 
         if ((metalButton = GetComponent<DragAndDropCell>().GetItem().GetComponent<MetalInfo>()) != null)
         {
-            if (metalButton.amount!=0)
+            if (Inventory.instance.items.Contains(metalButton.metal))
             {
                 metalButton.metal.Use(metalButton.character);
+                Inventory.instance.items.Remove(metalButton.metal);
                 //Debug.Log("metal ok until here");
                 GetComponent<DragAndDropCell>().GetItem().GetComponent<MetalInfo>().amount--;
             }
@@ -60,9 +61,10 @@ public class ButtonManager : MonoBehaviour {
             }
         }else if((healthButton = GetComponent<DragAndDropCell>().GetItem().GetComponent<HealthInfo>()) != null)
         {
-            if (healthButton.amount != 0)
+            if (Inventory.instance.items.Contains(healthButton.health))
             {
                 healthButton.health.Use(healthButton.character);
+                Inventory.instance.items.Remove(healthButton.health);
                 healthButton.amount--;
             }
             else
