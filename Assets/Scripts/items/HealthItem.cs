@@ -7,6 +7,7 @@ public class HealthItem : Item
     //public GameObject character = null;
 
     public int health;
+    int healthIncrease;
     override public void Use()
     {
 
@@ -15,7 +16,23 @@ public class HealthItem : Item
     {
         if (character != null)
         {
-            character.GetComponent<PartyStats>().currentHealth = character.GetComponent<PartyStats>().currentHealth + health;
+            PartyStats characterStats = character.GetComponent<PartyStats>();
+            if (characterStats.maxHealth > characterStats.currentHealth)
+            {
+                if (characterStats.maxHealth >= characterStats.currentHealth + health)
+                {
+                    characterStats.currentHealth = characterStats.currentHealth + health;
+                }
+                else
+                {
+                    characterStats.currentHealth = characterStats.maxHealth;
+                }
+            }
+            else
+            {
+                Debug.Log("Already with full life");
+            }
+            
             
         }
     }
