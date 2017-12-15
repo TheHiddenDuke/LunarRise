@@ -80,10 +80,41 @@ public class menuButton : MonoBehaviour {
             title.text = dic["title"];
             detail.text = dic["details"];
         }
+
+        questGiver();
     }
     public void backQuest()
     {
         myMission.SetActive(!myMission.activeSelf);
     }
+
+    public Text npcName;
+    public Text questName;
+    public Text dialogueLucy;
+    //public Text dialogueAbner;
+    private string[] dial;
     
+
+    public void questGiver()
+    {
+        List<Dictionary<string, string>> nameDic = GameObject.Find("Canvas").GetComponent<lucyQuest>().questLoad();
+        List<Dictionary<string, string>> dialDic = GameObject.Find("Canvas").GetComponent<lucyQuest>().dialLoad();
+
+        
+        if(nameDic != null)
+        {
+            Dictionary<string, string> dic = nameDic[0];
+        npcName.text = dic["npcName"];
+        questName.text = dic["title"];
+            for(int e = 0; e < 3; e++)
+            {
+                //Dictionary<string, string> dicDial = dialDic[e];
+
+                //dial[e] = dicDial["dialogue"];
+                //Debug.Log(dial[e]);
+            }
+
+
+        }
+    }
 }

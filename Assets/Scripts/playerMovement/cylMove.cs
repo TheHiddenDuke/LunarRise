@@ -38,6 +38,7 @@ public class cylMove : MonoBehaviour {
     private GameObject myQuest;
     private GameObject myEquip;
     private GameObject mySkillTree;
+    private GameObject myQuestGiver;
     [HideInInspector] public bool changedMenu = false;
     Camera cam;
     PlayerStats playerStats;
@@ -60,6 +61,10 @@ public class cylMove : MonoBehaviour {
         myEquip.SetActive(false);
         mySkillTree = GameObject.FindGameObjectWithTag("SkillTreeMenu");
         mySkillTree.SetActive(false);
+        myQuestGiver = GameObject.FindGameObjectWithTag("QuestLucy");
+        myQuestGiver.SetActive(false);
+
+
         anim = GetComponentInChildren<Animator>();
 
         //abilityCoolDown = GetComponent<AbilityCoolDown>();
@@ -184,6 +189,10 @@ public class cylMove : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.J))
         {
             myEquip.SetActive(!myEquip.activeSelf);
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            myQuestGiver.SetActive(!myQuestGiver.activeSelf);
         }
 
         

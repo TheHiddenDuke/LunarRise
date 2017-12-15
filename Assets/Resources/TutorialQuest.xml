@@ -1,15 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <questLog>
-  <npcName>
-Lucy 
-   </npcName>
+  <quest>
+    <npcName>
+Lucy
+    </npcName>
    <title>
 Tutorial
   </title>
-  <quest>
+  
     <lucy>
- 
-      
   <dialogue>
 Hello Abner, welcome to The Guild.
   </dialogue>
@@ -24,11 +23,38 @@ Anyone is welcome. To become a member you will need to prove your worth by clear
 Hi there lucy, was wondering if me and my friends could come to work under this guild?
   </dialogue>
   <dialogue>
-This is the tutorial where the player get's to know the working of combat.
-  </dialogue>
-  <dialogue>
 Alright, il see what i can do.
   </dialogue>
       </abner>
+  </quest>
+
+  <quest>
+    <npcName>
+Lucy
+    </npcName>
+    <title>
+Trouble in the woods
+    </title>
+
+    <lucy>
+
+
+      <dialogue>
+Hello Abner, well done on your entrance exam.
+      </dialogue>
+      <dialogue>
+We just got a message from some woodsmen outside the city that a giant mech is hindering their work.
+      </dialogue>
+    </lucy>
+
+
+    <abner>
+      <dialogue>
+Thanks. Me and my friends are looking for some work to do, got anything?
+      </dialogue>
+      <dialogue>
+Alright, we're on it!
+      </dialogue>
+    </abner>
   </quest>
 </questLog>

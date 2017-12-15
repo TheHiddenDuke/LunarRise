@@ -17,6 +17,8 @@ TagManager:
   - ActionButton
   - GameManager
   - SkillTreeMenu
+  - QuestLucy
+  - DetailLucy
   layers:
   - Default
   - TransparentFX

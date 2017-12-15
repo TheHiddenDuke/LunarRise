@@ -538,6 +538,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4810472865738108}
   - component: {fileID: 95678552582876486}
+  - component: {fileID: 114127441592196978}
   m_Layer: 0
   m_Name: tripod
   m_TagString: Untagged
@@ -1317,7 +1318,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1052474012956120}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 159.31, y: 97.36, z: 12.375}
+  m_LocalPosition: {x: 666.94, y: 568.5, z: 239.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4810472865738108}
@@ -1581,7 +1582,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1220811588269798}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4810472865738108}
@@ -1721,8 +1722,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1508255379813714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.27, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalPosition: {x: 0, y: 0.18, z: 0}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 4902974779340386}
   - {fileID: 4974447584733156}
@@ -1936,6 +1937,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114127441592196978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508255379813714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c2b3b46ca3807e4aaf354c5bbf617c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  speed: 0
+  life: 0
 --- !u!114 &114128292703043328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1962,6 +1977,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  targetStats: {fileID: 0}
+  distance: 0
   lookRadius: 10
 --- !u!114 &114816243037156124
 MonoBehaviour:
@@ -1976,13 +1993,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   maxStamina: 100
+  currentHealth: 0
   showHealth: 0
   dead: 0
+  attacking: 0
+  underAttack: 0
+  abilityAttack: 0
   damage:
-    baseValue: 2
+    baseValue: 20
   armor:
     baseValue: 0
-  attacking: 0
+  providedXP: 304
+  time: 0
+  items:
+  - {fileID: 4287034966684916, guid: f76ef40debf0cbc468d519322d51fcac, type: 2}
+  - {fileID: 4867702795546114, guid: 6cd4504574e9d9b44b75ef97accf7c6a, type: 2}
 --- !u!114 &114927914910688660
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2005,8 +2030,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1.1
-  m_Height: 4.5
+  m_Radius: 1.67
+  m_Height: 7.74
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!137 &137995817108454368
@@ -2110,7 +2135,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
