@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Name: Weapon
   m_EditorClassIdentifier: 
   name: Sword of pointy
-  icon: {fileID: 21300000, guid: f6e80009b499fc547bcf4872de416552, type: 3}
+  icon: {fileID: 21300000, guid: ed049d55501e34e4ba8a41087df3f489, type: 3}
   isDefaultItem: 0
   equipSlot: 2
   armorModifier: 0
   damageModifier: 3
+  dmg: {fileID: 0}
+  def: {fileID: 0}
